@@ -10,10 +10,12 @@ export default function Home() {
         <title>DPentagon- HOME</title>
       </Head>
       <div>
-        <br></br>
         <NavBar></NavBar>
         <Row className="justify-content-md-center">
           <Col className="text-center" md="8">
+            <AdSection />
+            <AdSection />
+            <AdSection />
             <AdSection />
           </Col>
         </Row>
@@ -21,6 +23,13 @@ export default function Home() {
           <Col md="8"></Col>
         </Row>
       </div>
+      <style global jsx>{`
+        html,
+        body,
+        body > div:first-child,
+        div#__next,
+       
+      `}</style>
     </>
   );
 }

@@ -1,29 +1,69 @@
-import { faCaretDown, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretUp, faHome } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Col, Row } from 'react-bootstrap';
-
+import React from 'react';
+import ScrollToTop from 'react-scroll-up';
 export default function Footer() {
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  // Show button when page is scorlled upto given distance
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  // Set the top cordinate to 0
+  // make scrolling smooth
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
+  const scrollToBottom = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('scroll', toggleVisibility);
+  }, []);
   return (
     <>
       <footer>
         <Row className="justify-content-md-center" style={{ backgroundColor: '#000' }}>
           <Col className="my-auto text-center " xs="4" md="4">
-            <FontAwesomeIcon className="hoverable" size="2x" color="#FFFFFF" icon={faHome} />
+            <Link href="/">
+              <FontAwesomeIcon className="hoverable" size="2x" color="#FFFFFF" icon={faHome} />
+            </Link>
           </Col>
           <Col className="my-auto text-center" xs="auto" md="auto">
-            <Image className="hoverable" src="/logo-white.png" alt="DPentagon Logo" width={60} height={60} />
+            <Link href="/">
+              <Image className="hoverable" src="/logo-white.png" alt="DPentagon Logo" width={60} height={60} />
+            </Link>
           </Col>
           <Col className="my-auto text-center" xs="4" md="4">
-            <FontAwesomeIcon className="hoverable" size="4x" color="#FFFFFF" icon={faCaretDown} />
+            {isVisible ? (
+              <FontAwesomeIcon className="hoverable" size="4x" color="#FFFFFF" icon={faCaretUp} onClick={scrollToTop} />
+            ) : (
+              <FontAwesomeIcon className="hoverable" size="4x" color="#FFFFFF" icon={faCaretDown} onClick={scrollToBottom} />
+            )}
           </Col>
         </Row>
       </footer>
       <style jsx>{`
         footer {
-          left: 0;
+          // left: 0;
           bottom: 0;
-          right: 0;
+          // right: 0;
+          width: 100%;
+          height: 10%;
+          position: fixed;
         }
       `}</style>
     </>

@@ -4,8 +4,9 @@ import TopBar from '../Header/TopBar/TopBar';
 
 export default function Layout(props) {
   return (
-    <Container fluid>
+    <Container fluid style={{ minHeight: '100%' }}>
       <TopBar></TopBar>
+      <br></br>
       {props.children}
       <Footer></Footer>
     </Container>
