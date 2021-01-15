@@ -4,19 +4,46 @@ import Image from 'next/image';
 import globalStyles from '../../../styles/globalStyles.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-export default function TopBar() {
+import userLogout from '../../../lib/requests/mutators/userLogout';
+import { useRouter } from 'next/router';
+
+import axios from 'axios';
+import { setupMaster } from 'cluster';
+interface Props {
+  loggedIn: boolean;
+  logoutUser: () => void;
+}
+export default function TopBar({ loggedIn, logoutUser }: Props) {
+  const router = useRouter();
   return (
     <>
       <Row className={`${globalStyles.primaryBg} justify-content-md-center`}>
         <Col className="my-auto">
-          <Link href="/login">
-            <h4 className="text-center hoverable">LOG IN</h4>
-          </Link>
+          {loggedIn ? (
+            <h4
+              className="text-center hoverable"
+              onClick={async () => {
+                try {
+                  await userLogout();
+                  logoutUser();
+                  router.replace('/');
+                } catch (err) {}
+              }}
+            >
+              LOG OUT
+            </h4>
+          ) : (
+            <Link href="/login">
+              <h4 className="text-center hoverable">LOG IN</h4>
+            </Link>
+          )}
         </Col>
         <Col className="text-center my-auto">
           <>
             <Link href="/">
-              <Image className="hoverable" src="/logo-black.png" alt="DPentagon Logo" width={60} height={60} />
+              <div>
+                <Image className="hoverable" src="/logo-black.png" alt="DPentagon Logo" width={60} height={60} />
+              </div>
             </Link>
             <br />
             <Link href="/">

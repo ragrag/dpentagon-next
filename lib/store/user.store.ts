@@ -23,4 +23,4 @@ const userLoggedInState = selector({
     return get(userState).loggedIn;
   },
 });
-export { userState, userLoggedInState };
+export { userState, userLoggedInState, defaultUser };

@@ -3,15 +3,17 @@ import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { Menu, MenuItem } from '@material-ui/core';
 import { NavDropdown } from 'react-bootstrap';
+import { useRouter } from 'next/router';
 
 type Props = {
   label: string;
   onClick?: () => void;
+  professions: string[];
 };
 
 export default function NavDropDown(props: Props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  const router = useRouter();
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
     if (props.onClick) props.onClick();
@@ -20,20 +22,57 @@ export default function NavDropDown(props: Props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const routeToCustomQuery = (userType: string = null) => {
+    let queryString = 'profession=';
+    for (let i = 0; i < props.professions.length; i++) {
+      queryString += `${props.professions[i]}${i < props.professions.length - 1 ? ';' : ''}`;
+    }
 
+    if (userType) router.replace(`/?${queryString}&userType=${userType}`);
+    else router.replace(`/?${queryString}`);
+  };
   return (
     <>
       <Menu id="simple-menu" style={{ marginTop: '40px' }} anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
-        <MenuItem style={{ backgroundColor: '#FF000' }} onClick={handleClose}>
+        <MenuItem
+          style={{ backgroundColor: '#FF000' }}
+          onClick={() => {
+            handleClose();
+            routeToCustomQuery('company');
+          }}
+        >
           Company
         </MenuItem>
         <NavDropdown.Divider />
-        <MenuItem onClick={handleClose}>Freelancer</MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            routeToCustomQuery('freelancer');
+          }}
+        >
+          Freelancer
+        </MenuItem>
       </Menu>
-      <div aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        <span style={{ color: '#FFFFFF' }}>{props.label}</span>
-        <FontAwesomeIcon size="sm" color="#FFFFFF" icon={faCaretDown} style={{ marginLeft: '3px' }} />
-      </div>
+
+      <span
+        className="hoverable"
+        style={{ color: '#FFFFFF' }}
+        onClick={() => {
+          routeToCustomQuery();
+        }}
+      >
+        {props.label}
+      </span>
+
+      <FontAwesomeIcon
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClick}
+        size="sm"
+        color="#FFFFFF"
+        icon={faCaretDown}
+        style={{ marginLeft: '3px' }}
+      />
     </>
   );
 }

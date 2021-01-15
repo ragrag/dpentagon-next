@@ -39,12 +39,16 @@ export default function Footer() {
         <Row className="justify-content-md-center" style={{ backgroundColor: '#000' }}>
           <Col className="my-auto text-center " xs="4" md="4">
             <Link href="/">
-              <FontAwesomeIcon className="hoverable" size="2x" color="#FFFFFF" icon={faHome} />
+              <div>
+                <FontAwesomeIcon className="hoverable" size="2x" color="#FFFFFF" icon={faHome} />
+              </div>
             </Link>
           </Col>
           <Col className="my-auto text-center" xs="auto" md="auto">
             <Link href="/">
-              <Image className="hoverable" src="/logo-white.png" alt="DPentagon Logo" width={60} height={60} />
+              <div>
+                <Image className="hoverable" src="/logo-white.png" alt="DPentagon Logo" width={60} height={60} />
+              </div>
             </Link>
           </Col>
           <Col className="my-auto text-center" xs="4" md="4">
@@ -64,6 +68,7 @@ export default function Footer() {
           width: 100%;
           height: 10%;
           position: fixed;
+          z-index: 10000;
         }
       `}</style>
     </>

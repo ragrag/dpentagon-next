@@ -48,21 +48,25 @@ export default function LoginPage() {
             try {
               clearErrors();
               console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/login`);
-              const response = await axios.post(`http://localhost:3001/api/v1/auth/login`, {
-                email: values.email,
-                password: values.password,
-              });
+              const response = await axios.post(
+                `http://localhost:3001/api/v1/auth/login`,
+                {
+                  email: values.email,
+                  password: values.password,
+                },
+                { withCredentials: true },
+              );
               setUser({
                 loggedIn: true,
                 id: response.data.id,
                 email: response.data.email,
               });
-              router.push(`/`);
+              router.replace(`/`);
             } catch (err) {
               if (err.response?.status === 401) {
                 setCredentialError(true);
               } else if (err.response?.status === 403) {
-                router.push(`/email/notconfirmed?email=${values.email}`);
+                router.replace(`/email/notconfirmed?email=${values.email}`);
               } else if (err.response?.status === 404) {
                 setEmailNotFoundError(true);
               } else if (err.response?.status === 400) {
