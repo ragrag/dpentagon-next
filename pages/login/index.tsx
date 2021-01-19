@@ -122,8 +122,14 @@ export default function LoginPage() {
           )}
         </Formik>
         <br></br>
+        <Link href="/password/forget">
+          <h6 className="text-center hoverable-anchor" style={{ color: '#000000' }}>
+            forgot password?
+          </h6>
+        </Link>
+
         <Link href="/register">
-          <h4 className="text-center hoverable" style={{ color: '#000000' }}>
+          <h4 className="text-center hoverable-anchor" style={{ color: '#000000' }}>
             Create a new account
           </h4>
         </Link>
