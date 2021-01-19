@@ -32,6 +32,7 @@ export default function Home() {
       </Head>
       <div>
         <NavBar></NavBar>
+
         <Row className="justify-content-md-center">
           <Col className="text-center" md="8">
             <AdSection />
