@@ -12,8 +12,8 @@ type Props = {
   width?: number;
   height?: number;
   key?: number;
-  setUserModalVisibility: (visible: boolean) => void;
-  setSelectedUser: React.Dispatch<React.SetStateAction<User>>;
+  setUserModalVisibility?: (visible: boolean) => void;
+  setSelectedUser?: React.Dispatch<React.SetStateAction<User>>;
 };
 export default function PostItem({ post, width, height, setUserModalVisibility, setSelectedUser }: Props) {
   return (
@@ -30,16 +30,17 @@ export default function PostItem({ post, width, height, setUserModalVisibility, 
             </Col>
           </Row>
         </Card.Header>
-        <Card.Img
-          className="hoverable"
-          variant="bottom"
-          key={post.id}
-          width={width ?? 250}
-          height={height ?? 250}
-          src={post.url}
-          alt={post.caption}
-        />
-
+        <Link href={`/post/${post.id}`}>
+          <Card.Img
+            className="hoverable"
+            variant="bottom"
+            key={post.id}
+            width={width ?? 250}
+            height={height ?? 250}
+            src={post.url}
+            alt={post.caption}
+          />
+        </Link>
         <Card.Footer>
           <Row className="justify-content-left">
             <Col className="text-left" xs="8">
@@ -56,8 +57,8 @@ export default function PostItem({ post, width, height, setUserModalVisibility, 
                 style={{ fontSize: 12 }}
                 className="text-left hoverable-anchor"
                 onClick={() => {
-                  setSelectedUser(post.catalogue.user);
-                  setUserModalVisibility(true);
+                  if (setSelectedUser) setSelectedUser(post.catalogue.user);
+                  if (setUserModalVisibility) setUserModalVisibility(true);
                 }}
               >
                 by: {post.catalogue.user.displayName}

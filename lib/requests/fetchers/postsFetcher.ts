@@ -21,9 +21,6 @@ const postsFetcher = async (
   { page = 1, limit = 20, profession, country, caption, userType }: PostsFetchQuery,
 ): Promise<PostsFetchResponse> => {
   try {
-    await new Promise(function (resolve) {
-      setTimeout(resolve, 500);
-    });
     const queryParams: PostsFetchQuery = { page, limit };
     if (profession) queryParams.profession = profession;
     if (country) queryParams.country = country;
