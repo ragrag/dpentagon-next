@@ -18,11 +18,9 @@ const randomHeightsMap: Map<number, number> = new Map<number, number>();
 
 export default function Home() {
   const router = useRouter();
-  const limit = 6;
-
   const getKey = (pageIndex, previousPageData) => {
     if (previousPageData && !previousPageData.hasMore) return null;
-    return ['/api/v1/posts', pageIndex + 1, limit, router.query.profession, router.query.country, router.query.caption, router.query.userType]; // SWR key
+    return ['/api/v1/posts', pageIndex + 1, 20, router.query.profession, router.query.country, router.query.caption, router.query.userType]; // SWR key
   };
 
   const { data, size, setSize, isValidating, error } = useSWRInfinite(

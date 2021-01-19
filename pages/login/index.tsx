@@ -58,8 +58,7 @@ export default function LoginPage() {
               );
               setUser({
                 loggedIn: true,
-                id: response.data.id,
-                email: response.data.email,
+                ...response.data,
               });
               router.replace(`/`);
             } catch (err) {

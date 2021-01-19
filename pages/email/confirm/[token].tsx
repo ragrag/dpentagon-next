@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function ConfirmEmailPage() {
-  return <div></div>;
+  return <div>Confirm Email</div>;
 }

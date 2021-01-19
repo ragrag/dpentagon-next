@@ -16,26 +16,33 @@ export default function Layout({ userInitialState, children }: InferGetServerSid
   const logoutUser = () => {
     setUser(defaultUser);
   };
-  const { data, mutate, error } = useSWR('/api/user', userFetcher, { initialData: userInitialState, refreshInterval: 0, revalidateOnFocus: false });
+  const { data: userData, mutate, error } = useSWR('/api/user', userFetcher, {
+    initialData: userInitialState,
+    refreshInterval: 0,
+    revalidateOnFocus: false,
+    onError: err => {
+      if (err?.response?.status === 401) logoutUser();
+    },
+  });
+
   // if (error?.response?.status === 401) {
   //   setUser(defaultUser);
   // }
 
-  React.useEffect(() => {
-    if (error?.response?.status === 401) {
-      logoutUser();
-    }
-  }, [error]);
+  // React.useEffect(() => {
+  //   if (error?.response?.status === 401) {
+  //     logoutUser();
+  //   }
+  // }, [error]);
 
   React.useEffect(() => {
-    if (data?.id && !error) {
+    if (userData) {
       setUser({
-        email: data.email,
-        id: data.id,
         loggedIn: true,
+        ...userData,
       });
     }
-  }, [data]);
+  }, [userData]);
 
   return (
     <Container fluid style={{ minHeight: '100%', marginBottom: '100px' }}>

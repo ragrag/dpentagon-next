@@ -1,10 +1,10 @@
+import Catalogue from './catalogue';
 import Profession from './profession';
 
 export default interface User {
   id: number;
   email: string;
   emailConfirmed: boolean;
-  password: string;
   userType: string;
   profession: Profession;
   country: string;
@@ -14,7 +14,6 @@ export default interface User {
   coverPhoto: string;
   phoneNumber: string;
   address: string;
-  verified: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

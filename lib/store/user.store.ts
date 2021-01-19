@@ -1,15 +1,26 @@
 import { atom, selector } from 'recoil';
+import User from '../interfaces/user';
 
 type UserState = {
   loggedIn: boolean;
-  id: number;
-  email: string;
-};
+} & User;
 
 const defaultUser: UserState = {
   loggedIn: false,
   id: null,
-  email: '',
+  email: null,
+  address: null,
+  country: null,
+  coverPhoto: null,
+  createdAt: null,
+  displayName: null,
+  emailConfirmed: false,
+  phoneNumber: null,
+  photo: null,
+  profession: null,
+  profileInfo: null,
+  updatedAt: null,
+  userType: null,
 };
 
 const userState = atom({

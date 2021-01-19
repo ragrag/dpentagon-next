@@ -1,4 +1,4 @@
-import Catalogue from './Catalogue';
+import Catalogue from './catalogue';
 import Profession from './profession';
 
 export default interface Post {

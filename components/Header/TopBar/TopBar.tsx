@@ -45,7 +45,7 @@ export default function TopBar({ loggedIn, logoutUser }: Props) {
                 <Image className="hoverable" src="/logo-black.png" alt="DPentagon Logo" width={60} height={60} />
               </div>
             </Link>
-            <br />
+
             <Link href="/">
               <h5 className="hoverable" style={{ fontWeight: 'bold' }}>
                 D.PENTAGON
