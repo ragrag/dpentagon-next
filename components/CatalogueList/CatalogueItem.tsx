@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
+
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import Catalogue from '../../lib/interfaces/catalogue';
@@ -10,7 +10,6 @@ type Props = {
 };
 
 export default function CatalogueItem({ catalogue, onClick }: Props) {
-  dayjs.extend(relativeTime);
   return (
     <Card
       className="bg-dark text-white hoverable"

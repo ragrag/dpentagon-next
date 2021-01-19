@@ -52,11 +52,11 @@ export default function UserContactInfo({ visible, setModalVisibility, user, rea
       <Modal.Body style={{ backgroundColor: '#EEEEEE', maxHeight: 'calc(100vh - 210px)', overflowY: 'auto' }}>
         <Formik
           initialValues={{
-            displayName: user.displayName,
-            profileInfo: user.profileInfo,
-            country: user.country,
-            phoneNumber: user.phoneNumber,
-            address: user.address,
+            displayName: user?.displayName ?? '',
+            profileInfo: user?.profileInfo ?? '',
+            country: user?.country ?? '',
+            phoneNumber: user?.phoneNumber ?? '',
+            address: user?.address ?? '',
           }}
           validationSchema={ContactInfoSchema}
           onSubmit={async values => {
@@ -137,7 +137,7 @@ export default function UserContactInfo({ visible, setModalVisibility, user, rea
                   <span className="bold-text"> Profession:</span>
                 </Form.Label>
                 <Col sm="6">
-                  <Form.Control plaintext readOnly value={user.profession.name} />
+                  <Form.Control plaintext readOnly value={user?.profession?.name} />
                 </Col>
               </Form.Group>
               <Form.Group as={Row} controlId="formPlaintextEmail">
