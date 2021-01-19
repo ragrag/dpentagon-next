@@ -8,7 +8,7 @@ export interface UserCataloguesFetchResponse {
 
 const userCataloguesFetcher = async (userId: number): Promise<UserCataloguesFetchResponse> => {
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${userId}/catalogues`, { withCredentials: true });
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${userId}/catalogues`, {});
     console.log('user Catalogues');
     return response.data;
   } catch (err) {

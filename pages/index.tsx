@@ -29,13 +29,7 @@ export default function Home() {
       await postsFetcher(url, { page, limit, profession, country, caption, userType }),
     { revalidateOnFocus: false, refreshInterval: 0 },
   );
-  console.log(data, size);
-  // const { data: postData, isValidating, error } = useSWR(
-  //   ['/api/v1/posts', page, limit, router.query.profession, router.query.country, router.query.caption, router.query.userType],
-  //   async (url, page, limit, profession, country, caption, userType) =>
-  //     await postsFetcher(url, { page, limit, profession, country, caption, userType }),
-  //   { revalidateOnFocus: false, refreshInterval: 0 },
-  // );
+
   const loading = isValidating || !data;
 
   return (

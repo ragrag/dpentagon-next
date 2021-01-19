@@ -17,7 +17,12 @@ const updateUserRequest = async (updateUserDTO: UpdateUserDTO): Promise<void> =>
       {
         ...updateUserDTO,
       },
-      { withCredentials: true },
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: localStorage.getItem('authToken'),
+        },
+      },
     );
   } catch (err) {
     throw err;

@@ -10,7 +10,12 @@ const updateUserPhotoRequest = async (photo: string): Promise<UserPhotoUpdateRes
       {
         photo,
       },
-      { withCredentials: true },
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: localStorage.getItem('authToken'),
+        },
+      },
     );
     return response.data;
   } catch (err) {

@@ -55,6 +55,9 @@ export default function LoginPage() {
                 },
                 { withCredentials: true },
               );
+
+              localStorage.setItem('authToken', response.data.token);
+              console.log(response);
               setUser({
                 loggedIn: true,
                 ...response.data,

@@ -18,7 +18,12 @@ const userRegister = async (registerUserDTO: RegisterUserDTO): Promise<void> => 
       {
         ...registerUserDTO,
       },
-      { withCredentials: true },
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: localStorage.getItem('authToken'),
+        },
+      },
     );
   } catch (err) {
     throw err;

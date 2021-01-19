@@ -31,12 +31,11 @@ const postsFetcher = async (
     if (userType) queryParams.userType = userType;
 
     const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/posts`, {
-      withCredentials: true,
       params: {
         ...queryParams,
       },
     });
-    console.log(queryParams, response.data);
+
     return response.data;
   } catch (err) {
     throw err;

@@ -3,7 +3,7 @@ import User from '../../interfaces/user';
 
 const userByIdFetcher = async (url, userId): Promise<User> => {
   try {
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${userId}`, { withCredentials: true });
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/users/${userId}`, {});
     return response.data;
   } catch (err) {
     throw err;

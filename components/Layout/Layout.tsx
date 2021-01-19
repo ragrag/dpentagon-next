@@ -14,6 +14,7 @@ export default function Layout({ userInitialState, children }: InferGetServerSid
   const userLoggedIn = useRecoilValue(userLoggedInState);
 
   const logoutUser = () => {
+    localStorage.removeItem('authToken');
     setUser(defaultUser);
   };
   const { data: userData, mutate, error } = useSWR('/api/user', userFetcher, {
@@ -21,7 +22,9 @@ export default function Layout({ userInitialState, children }: InferGetServerSid
     refreshInterval: 0,
     revalidateOnFocus: false,
     onError: err => {
-      if (err?.response?.status === 401) logoutUser();
+      if (err?.response?.status === 401) {
+        logoutUser();
+      }
     },
   });
 
