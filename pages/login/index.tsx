@@ -47,9 +47,8 @@ export default function LoginPage() {
             // same shape as initial values
             try {
               clearErrors();
-              console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/login`);
               const response = await axios.post(
-                `http://localhost:3001/api/v1/auth/login`,
+                `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/auth/login`,
                 {
                   email: values.email,
                   password: values.password,
