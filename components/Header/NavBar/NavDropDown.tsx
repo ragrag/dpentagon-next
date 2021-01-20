@@ -23,6 +23,10 @@ export default function NavDropDown(props: Props) {
     setAnchorEl(null);
   };
   const routeToCustomQuery = (userType: string = null) => {
+    // router.query.profession = props.professions.join(';');
+    // router.query.userType = userType;
+    // console.log(router.query);
+    // console.log(router.query.profession);
     let queryString = 'profession=';
     for (let i = 0; i < props.professions.length; i++) {
       queryString += `${props.professions[i]}${i < props.professions.length - 1 ? ';' : ''}`;

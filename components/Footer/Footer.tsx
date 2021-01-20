@@ -47,7 +47,7 @@ export default function Footer() {
           <Col className="my-auto text-center" xs="auto" md="auto">
             <Link href="/user/profile">
               <div>
-                <Image className="hoverable" src="/logo-white.png" alt="DPentagon Logo" width={60} height={60} />
+                <Image className="hoverable" src="/logo-custom.png" alt="DPentagon Logo" width={60} height={60} />
               </div>
             </Link>
           </Col>
