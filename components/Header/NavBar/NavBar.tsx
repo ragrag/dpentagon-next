@@ -4,30 +4,15 @@ import NavDropDown from './NavDropDown';
 export default function NavBar() {
   return (
     <>
-      <Row style={{ backgroundColor: '#000' }}>
-        <Col>
-          <Navbar expand="lg" variant={'light'} style={{ backgroundColor: '#000000' }} className="text-center">
-            {/* <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ color: '#FFFFFF' }} /> */}
-            {/* <Navbar.Collapse id="basic-navbar-nav"> */}
-            <Nav className="m-auto  navbar-icons d-flex flex-row" style={{ color: '#FFFFFF' }}>
-              <Nav.Link id="basic-nav-dropdown" style={{ marginRight: '25px' }}>
-                <NavDropDown professions={['architecture']} label="Architecture"></NavDropDown>
-              </Nav.Link>
-              <Nav.Link id="basic-nav-dropdown" style={{ marginRight: '25px' }}>
-                <NavDropDown professions={['graphic']} label="Graphic"></NavDropDown>
-              </Nav.Link>
-              <Nav.Link id="basic-nav-dropdown" style={{ marginRight: '25px' }}>
-                <NavDropDown professions={['interior']} label="Interior"></NavDropDown>
-              </Nav.Link>
-              <Nav.Link id="basic-nav-dropdown" style={{ marginRight: '25px' }}>
-                <NavDropDown professions={['media']} label="Media"></NavDropDown>
-              </Nav.Link>
-              <Nav.Link id="basic-nav-dropdown" style={{ marginRight: '25px' }}>
-                <NavDropDown professions={['product']} label="Product"></NavDropDown>
-              </Nav.Link>
-            </Nav>
-            {/* </Navbar.Collapse> */}
-          </Navbar>
+      <Row style={{ backgroundColor: '#000', height: '45px' }} className="justify-content-md-center">
+        <Col xs="12" sm="12" md="6" className="text-center my-auto">
+          <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', alignContent: 'center' }}>
+            <NavDropDown professions={['architecture']} label="Architecture"></NavDropDown>
+            <NavDropDown professions={['graphic']} label="Graphic"></NavDropDown>
+            <NavDropDown professions={['interior']} label="Interior"></NavDropDown>
+            <NavDropDown professions={['media']} label="Media"></NavDropDown>
+            <NavDropDown professions={['product']} label="Product"></NavDropDown>
+          </div>
         </Col>
       </Row>
       <style jsx>{``}</style>

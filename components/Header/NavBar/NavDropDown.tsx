@@ -57,26 +57,28 @@ export default function NavDropDown(props: Props) {
           Freelancer
         </MenuItem>
       </Menu>
+      <div style={{ display: 'inline-block' }}>
+        <span
+          className="hoverable"
+          style={{ color: '#e9dccc' }}
+          onClick={() => {
+            routeToCustomQuery();
+          }}
+        >
+          {props.label}
+        </span>
 
-      <span
-        className="hoverable"
-        style={{ color: '#e9dccc' }}
-        onClick={() => {
-          routeToCustomQuery();
-        }}
-      >
-        {props.label}
-      </span>
-
-      <FontAwesomeIcon
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-        size="sm"
-        color="#e9dccc"
-        icon={faCaretDown}
-        style={{ marginLeft: '10px' }}
-      />
+        <FontAwesomeIcon
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+          size="sm"
+          color="#e9dccc"
+          icon={faCaretDown}
+          style={{ marginLeft: '10px' }}
+          className="hoverable"
+        />
+      </div>
     </>
   );
 }

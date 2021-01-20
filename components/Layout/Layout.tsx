@@ -48,7 +48,7 @@ export default function Layout({ userInitialState, children }: InferGetServerSid
   }, [userData]);
 
   return (
-    <Container fluid style={{ minHeight: '100%', marginBottom: '100px' }}>
+    <Container fluid style={{ minHeight: '100%', width: '100%', marginBottom: '100px' }}>
       <TopBar logoutUser={logoutUser} loggedIn={userLoggedIn}></TopBar>
       <br></br>
       {children}
