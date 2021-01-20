@@ -99,6 +99,7 @@ export default function ProfilePage() {
                                 </Form.Group>
                                 <Button
                                   variant="dark"
+                                  size="sm"
                                   onClick={async () => {
                                     const schema = yup.string().min(1).required();
                                     if (!schema.isValidSync(newCatalogue.current.value)) {

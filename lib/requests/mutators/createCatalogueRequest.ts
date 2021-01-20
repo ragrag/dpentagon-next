@@ -1,12 +1,18 @@
 import axios from 'axios';
-import Catalogue from '../../interfaces/catalogue';
+import Post from '../../interfaces/post';
 
-const createCatalogueRequest = async (name: string): Promise<Catalogue> => {
+export interface PostCreationDTO {
+  content: string;
+  caption: string;
+  catalogueId: number;
+}
+
+const createPhotoPostRequest = async (createPostDTO: PostCreationDTO): Promise<Post> => {
   try {
     const response = await axios.post(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/catalogues`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/posts/photo`,
       {
-        name,
+        ...createPostDTO,
       },
       {
         withCredentials: true,
@@ -21,4 +27,4 @@ const createCatalogueRequest = async (name: string): Promise<Catalogue> => {
   }
 };
 
-export default createCatalogueRequest;
+export default createPhotoPostRequest;

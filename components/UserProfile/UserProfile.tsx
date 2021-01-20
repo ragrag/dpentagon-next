@@ -84,7 +84,7 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                           }}
                         >
                           Upload Image
-                        </Button>{' '}
+                        </Button>
                         <Button variant="danger">Delete Image</Button>
                       </div>
                     </Popover.Content>

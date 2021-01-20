@@ -3,7 +3,7 @@ import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import useSWR from 'swr';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
-import PostItem from '../../components/PostList/PostItem';
+import PostItem from '../../components/Post/PostItem';
 import UserContactInfo from '../../components/UserProfile/UserContactInfo';
 import User from '../../lib/interfaces/user';
 import postByIdFetcher from '../../lib/requests/fetchers/postByIdFetcher';

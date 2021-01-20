@@ -6,7 +6,7 @@ import { useSWRInfinite } from 'swr';
 import AdSection from '../components/AdSection/AdSection';
 import NavBar from '../components/Header/NavBar/NavBar';
 import LoadingSpinner from '../components/Loading/LoadingSpinner';
-import PaginatedPostList from '../components/PostList/PaginatedPostList';
+import PaginatedPostList from '../components/Post/PaginatedPostList';
 import postsFetcher from '../lib/requests/fetchers/postsFetcher';
 
 export default function Home() {

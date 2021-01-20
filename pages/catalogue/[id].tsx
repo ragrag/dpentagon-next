@@ -1,15 +1,31 @@
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import useSWR, { useSWRInfinite } from 'swr';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
-import PaginatedPostList from '../../components/PostList/PaginatedPostList';
+import NewPostModal from '../../components/Post/NewPostModal';
+import PaginatedPostList from '../../components/Post/PaginatedPostList';
 import catalogueByIdFetcher from '../../lib/requests/fetchers/catalogueFetcherById';
 import cataloguePostsFetcher from '../../lib/requests/fetchers/cataloguePostsFetcher';
+import readImageFromFile from '../../lib/util/readImage';
 
 export default function CataloguePage({ catalogueId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const router = useRouter();
+  const [newPostModalVisible, setNewPostModalVisible] = React.useState(false);
+
+  const [newPost, setNewPost] = React.useState({
+    caption: '',
+    image: {
+      content: '',
+      file: '',
+    },
+    catalogueId: catalogueId,
+  });
+
   const { data: catalogue, mutate: mutateCatalogue, error: errorCatalogue, isValidating: isValidatingCatalogue } = useSWR(
     [`/api/v1/catalogues/${catalogueId}/catalogues`, catalogueId],
     async (url, catalogueId) => {
@@ -26,7 +42,7 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
     return catalogue?.id ? [`/api/v1/catalogues/${catalogueId}/posts`, catalogueId, pageIndex + 1, 20] : null; // SWR key
   };
 
-  const { data: postsData, size, setSize, isValidating: isValidatingPostsData, error } = useSWRInfinite(
+  const { data: postsData, size, setSize, mutate: mutatePostsData, isValidating: isValidatingPostsData, error } = useSWRInfinite(
     getKey,
     async (url, catalogueId, page, limit) => await cataloguePostsFetcher(url, catalogueId, { page, limit }),
     { revalidateOnFocus: false, refreshInterval: 0 },
@@ -47,6 +63,18 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
                   {catalogue.name} by {catalogue.user.displayName}
                 </h4>
               </Link>
+
+              <Col className="text-right">
+                <FontAwesomeIcon onClick={() => setNewPostModalVisible(true)} className="hoverable" size="2x" color="#000" icon={faPlusCircle} />
+              </Col>
+              <NewPostModal
+                newPost={newPost}
+                setNewPost={setNewPost}
+                visible={newPostModalVisible}
+                setModalVisibility={setNewPostModalVisible}
+                mutatePostsData={mutatePostsData}
+                postsData={postsData}
+              ></NewPostModal>
               <Row className="justify-content-center">
                 <Col md="12" className="my-auto text-center">
                   {!postsData ? null : postsData[0]?.posts?.length === 0 ? (
