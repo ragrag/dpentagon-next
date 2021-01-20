@@ -108,19 +108,20 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
                 </h4>
               </Link>
 
-              <Col className="text-right">
-                <FontAwesomeIcon
-                  onClick={() => setNewPostModalVisible(true)}
-                  className="hoverable"
-                  size="lg"
-                  color="#000"
-                  icon={faPlusCircle}
-                  style={{ marginRight: '10px' }}
-                />
-                {catalogue.user.id === user?.id ? (
+              {catalogue.user.id === user?.id ? (
+                <Col className="text-right">
+                  <FontAwesomeIcon
+                    onClick={() => setNewPostModalVisible(true)}
+                    className="hoverable"
+                    size="lg"
+                    color="#000"
+                    icon={faPlusCircle}
+                    style={{ marginRight: '10px' }}
+                  />
+
                   <FontAwesomeIcon onClick={() => setDeletionModalVisible(true)} className="hoverable" size="lg" color="#000" icon={faTrashAlt} />
-                ) : null}
-              </Col>
+                </Col>
+              ) : null}
               <NewPostModal
                 newPost={newPost}
                 setNewPost={setNewPost}
