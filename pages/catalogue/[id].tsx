@@ -28,7 +28,7 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
 
   const { data: postsData, size, setSize, isValidating: isValidatingPostsData, error } = useSWRInfinite(
     getKey,
-    async (url, page, limit) => await cataloguePostsFetcher(url, catalogueId, { page, limit }),
+    async (url, catalogueId, page, limit) => await cataloguePostsFetcher(url, catalogueId, { page, limit }),
     { revalidateOnFocus: false, refreshInterval: 0 },
   );
 
