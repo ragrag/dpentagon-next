@@ -36,7 +36,9 @@ export default function TopBar({ loggedIn, logoutUser }: Props) {
             </h5>
           ) : (
             <Link href="/login">
-              <h5 className="text-center hoverable">LOG IN</h5>
+              <h5 className="text-center hoverable" style={{ whiteSpace: 'nowrap' }}>
+                LOG IN
+              </h5>
             </Link>
           )}
         </Col>
