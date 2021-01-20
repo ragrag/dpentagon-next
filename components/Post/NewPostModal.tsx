@@ -64,7 +64,7 @@ export default function NewPostModal({ visible, setModalVisibility, newPost, set
               <br></br>
               <Button
                 size="sm"
-                variant="dark"
+                variant="secondary"
                 onClick={() => {
                   postImageInput.current.click();
                 }}
@@ -104,7 +104,7 @@ export default function NewPostModal({ visible, setModalVisibility, newPost, set
                   }
                 }}
               >
-                Add Post To Catalogue
+                Submit
               </Button>
             </Col>
           </Row>

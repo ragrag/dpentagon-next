@@ -8,6 +8,8 @@ import UserContactInfo from './UserContactInfo';
 import updateUserCoverRequest from '../../lib/requests/mutators/updateUserCoverRequest';
 import updateUserPhotoRequest from '../../lib/requests/mutators/updateUserPhotoRequest';
 import LoadingSpinner from '../Loading/LoadingSpinner';
+import deleteCoverPhotoRequest from '../../lib/requests/mutators/deleteCoverPhotoRequest';
+import deleteProfilePhotoRequest from '../../lib/requests/mutators/deleteProfilePhotoRequest';
 type Props = {
   user: User;
   mutateUser?: (data?: User | Promise<User> | mutateCallback<User>, shouldRevalidate?: boolean) => Promise<User>;
@@ -62,6 +64,36 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
     } catch (err) {}
   };
 
+  const deleteCoverPhoto = async () => {
+    setUpdatingCoverPhoto(true);
+    try {
+      await deleteCoverPhotoRequest();
+      mutateUser(
+        {
+          ...user,
+          coverPhoto: null,
+        },
+        false,
+      );
+      setUpdatingCoverPhoto(false);
+    } catch (err) {}
+  };
+
+  const deleteProfilePhoto = async () => {
+    setUpdatingPhoto(true);
+    try {
+      await deleteProfilePhotoRequest();
+      mutateUser(
+        {
+          ...user,
+          photo: null,
+        },
+        false,
+      );
+      setUpdatingPhoto(false);
+    } catch (err) {}
+  };
+
   return (
     <>
       <div style={{ maxWidth: '820' }}>
@@ -89,7 +121,13 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                             Upload Image
                           </Button>
                           <br></br>
-                          <Button size="sm" variant="danger">
+                          <Button
+                            onClick={() => {
+                              deleteCoverPhoto();
+                            }}
+                            size="sm"
+                            variant="danger"
+                          >
                             Delete Image
                           </Button>
                         </Col>
@@ -107,7 +145,15 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                   height="312"
                 />
               </OverlayTrigger>
-            ) : null}
+            ) : (
+              <Image
+                style={{ backgroundColor: '#FFF', borderRadius: '50%', zIndex: 9, border: '3px solid #FFFFFF' }}
+                src={user.photo ? user.photo + `?key=${uuid()}` : '/user-photo.jpg'}
+                width="150"
+                height="150"
+                className="hoverable"
+              />
+            )}
           </>
         </div>
       </div>
@@ -141,7 +187,13 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                               Upload Image
                             </Button>
                             <br></br>
-                            <Button size="sm" variant="danger">
+                            <Button
+                              onClick={() => {
+                                deleteProfilePhoto();
+                              }}
+                              size="sm"
+                              variant="danger"
+                            >
                               Delete Image
                             </Button>
                           </Col>
@@ -158,7 +210,15 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                     className="hoverable-opacity"
                   />
                 </OverlayTrigger>
-              ) : null}
+              ) : (
+                <Image
+                  style={{ backgroundColor: '#FFF', borderRadius: '50%', zIndex: 9, border: '3px solid #FFFFFF' }}
+                  src={user.photo ? user.photo + `?key=${uuid()}` : '/user-photo.jpg'}
+                  width="150"
+                  height="150"
+                  className="hoverable-"
+                />
+              )}
             </div>
           </div>
         </Col>

@@ -1,21 +1,65 @@
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Button, Col, Form, Row } from 'react-bootstrap';
+import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
+import { useRecoilState } from 'recoil';
 import useSWR, { useSWRInfinite } from 'swr';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import NewPostModal from '../../components/Post/NewPostModal';
 import PaginatedPostList from '../../components/Post/PaginatedPostList';
 import catalogueByIdFetcher from '../../lib/requests/fetchers/catalogueFetcherById';
 import cataloguePostsFetcher from '../../lib/requests/fetchers/cataloguePostsFetcher';
+import deleteCatalogueRequest from '../../lib/requests/mutators/deleteCatalogueRequest';
+import { userState } from '../../lib/store/user.store';
 import readImageFromFile from '../../lib/util/readImage';
 
 export default function CataloguePage({ catalogueId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
+  const [user, setUser] = useRecoilState(userState);
   const [newPostModalVisible, setNewPostModalVisible] = React.useState(false);
+
+  const [deletionModalVisible, setDeletionModalVisible] = React.useState(false);
+
+  const catalogueDeletionModal = (
+    <Modal
+      onHide={() => setDeletionModalVisible(false)}
+      size="sm"
+      show={deletionModalVisible}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">Delete Catalogue?</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <span>Are you sure you want to delete this catalogue?</span>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button size="sm" variant={'dark'} onClick={() => setDeletionModalVisible(false)}>
+          Close
+        </Button>
+        <Button
+          onClick={async () => {
+            try {
+              await deleteCatalogueRequest(catalogue.id);
+              setDeletionModalVisible(false);
+              router.replace(`/user/profile`);
+            } catch (err) {
+              if (err?.response?.status === 401) alert('Unauthorized');
+              else alert('Failed to delete catalogue');
+            }
+          }}
+          size="sm"
+          variant={'dark'}
+        >
+          Yes
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
 
   const [newPost, setNewPost] = React.useState({
     caption: '',
@@ -65,7 +109,17 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
               </Link>
 
               <Col className="text-right">
-                <FontAwesomeIcon onClick={() => setNewPostModalVisible(true)} className="hoverable" size="2x" color="#000" icon={faPlusCircle} />
+                <FontAwesomeIcon
+                  onClick={() => setNewPostModalVisible(true)}
+                  className="hoverable"
+                  size="lg"
+                  color="#000"
+                  icon={faPlusCircle}
+                  style={{ marginRight: '10px' }}
+                />
+                {catalogue.user.id === user?.id ? (
+                  <FontAwesomeIcon onClick={() => setDeletionModalVisible(true)} className="hoverable" size="lg" color="#000" icon={faTrashAlt} />
+                ) : null}
               </Col>
               <NewPostModal
                 newPost={newPost}
@@ -96,6 +150,7 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
           )}
         </Col>
       </Row>
+      {catalogueDeletionModal}
     </>
   );
 }
