@@ -25,8 +25,8 @@ export default function PostPage({ postId }: InferGetServerSidePropsType<typeof 
   return (
     <>
       <br></br>
-      <Row className={`justify-content-md-center`}>
-        <Col className="text-center" md="8">
+      <Row className={`justify-content-md-center`} style={{ overflow: 'auto' }}>
+        <Col className="text-center" md="8" xs="8">
           {loading ? (
             <LoadingSpinner />
           ) : postError ? (
