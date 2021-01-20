@@ -10,6 +10,7 @@ import { userState } from '../../lib/store/user.store';
 import { useRecoilState } from 'recoil';
 import deletePostRequest from '../../lib/requests/mutators/deletePostRequest';
 import { confirmAlert } from 'react-confirm-alert'; // Import
+import Image from 'next/image';
 type Props = {
   post: Post;
   width?: number;
@@ -79,6 +80,7 @@ export default function PostItem({ post, width, height, setUserModalVisibility, 
         </Card.Header>
         <Link href={`/post/${post.id}`}>
           <Card.Img
+            as={Image}
             className="hoverable"
             variant="bottom"
             key={post.id}

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Col, Image, OverlayTrigger, Popover, Row, Modal, Form } from 'react-bootstrap';
+import Image from 'next/image';
+import { Button, Col, Image as BootstrapImage, OverlayTrigger, Popover, Row, Modal, Form } from 'react-bootstrap';
 import { mutateCallback } from 'swr/dist/types';
 import User from '../../lib/interfaces/user';
 import { v4 as uuid } from 'uuid';
@@ -103,13 +104,9 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
           ) : (
             <Row className="justify-content-center">
               <Col>
-                <Image
-                  fluid
-                  style={{ zIndex: 0, borderBottom: '1px solid #AAAAAA', maxWidth: 820, maxHeight: 312, opacity: 0.87 }}
-                  src={user.coverPhoto ? user.coverPhoto + `?key=${uuid()}` : '/cover.jpeg'}
-                  width="820"
-                  height="312"
-                />
+                <div style={{ opacity: 0.9 }}>
+                  <Image src={user.coverPhoto ? user.coverPhoto + `?key=${uuid()}` : '/cover.jpeg'} width="820" height="312" />
+                </div>
                 {editable ? (
                   <OverlayTrigger
                     placement={'bottom'}
@@ -150,8 +147,8 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                       variant="dark"
                       size="sm"
                       style={{
-                        margin: '-70px 10px 0px 50px',
-                        left: '37%',
+                        margin: '-90px 10px 0px 50px',
+                        left: '35%',
                         zIndex: 9,
                         position: 'relative',
                         opacity: 0.5,
@@ -212,7 +209,7 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                     </Popover>
                   }
                 >
-                  <Image
+                  <BootstrapImage
                     style={{ backgroundColor: '#FFF', borderRadius: '50%', zIndex: 9, border: '3px solid #FFFFFF' }}
                     src={user.photo ? user.photo + `?key=${uuid()}` : '/user-photo.jpg'}
                     width="150"
@@ -221,7 +218,7 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                   />
                 </OverlayTrigger>
               ) : (
-                <Image
+                <BootstrapImage
                   style={{ backgroundColor: '#FFF', borderRadius: '50%', zIndex: 9, border: '3px solid #FFFFFF' }}
                   src={user.photo ? user.photo + `?key=${uuid()}` : '/user-photo.jpg'}
                   width="150"
