@@ -47,7 +47,7 @@ export default function TopBar({ loggedIn, logoutUser }: Props) {
             </Link>
 
             <Link href="/">
-              <h5 className="hoverable" style={{ fontWeight: 'bold' }}>
+              <h5 className="hoverable" style={{ fontWeight: 'bold', fontFamily: 'Athelas' }}>
                 D.PENTAGON
               </h5>
             </Link>

@@ -56,7 +56,7 @@ export default function NavDropDown(props: Props) {
 
       <span
         className="hoverable"
-        style={{ color: '#FFFFFF' }}
+        style={{ color: '#e9dccc' }}
         onClick={() => {
           routeToCustomQuery();
         }}
@@ -69,9 +69,9 @@ export default function NavDropDown(props: Props) {
         aria-haspopup="true"
         onClick={handleClick}
         size="sm"
-        color="#FFFFFF"
+        color="#e9dccc"
         icon={faCaretDown}
-        style={{ marginLeft: '3px' }}
+        style={{ marginLeft: '10px' }}
       />
     </>
   );

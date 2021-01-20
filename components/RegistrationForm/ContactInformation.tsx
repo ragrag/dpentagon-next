@@ -55,10 +55,11 @@ export default function ContactInformation({ registrationData, setRegistrationDa
                   setRegistrationData({ ...registrationData, address: e.target.value });
                 }}
               />
-
-              <h6 className="text-center" style={{ marginTop: '10px', fontSize: 12, color: '#FF0000' }}>
-                you can fill address information later
-              </h6>
+              {registrationData.userType === 'freelancer' ? (
+                <h6 className="text-center" style={{ marginTop: '10px', fontSize: 12, color: '#FF0000' }}>
+                  you can fill address information later
+                </h6>
+              ) : null}
             </Col>
           </Form.Group>
         </Col>

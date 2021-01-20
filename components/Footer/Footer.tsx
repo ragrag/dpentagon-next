@@ -40,7 +40,7 @@ export default function Footer() {
           <Col className="my-auto text-center " xs="4" md="4">
             <Link href="/">
               <div>
-                <FontAwesomeIcon className="hoverable" size="2x" color="#FFFFFF" icon={faHome} />
+                <FontAwesomeIcon className="hoverable" size="2x" color="#e9dccc" icon={faHome} />
               </div>
             </Link>
           </Col>
@@ -53,9 +53,9 @@ export default function Footer() {
           </Col>
           <Col className="my-auto text-center" xs="4" md="4">
             {isVisible ? (
-              <FontAwesomeIcon className="hoverable" size="4x" color="#FFFFFF" icon={faCaretUp} onClick={scrollToTop} />
+              <FontAwesomeIcon className="hoverable" size="4x" color="#e9dccc" icon={faCaretUp} onClick={scrollToTop} />
             ) : (
-              <FontAwesomeIcon className="hoverable" size="4x" color="#FFFFFF" icon={faCaretDown} onClick={scrollToBottom} />
+              <FontAwesomeIcon className="hoverable" size="4x" color="#e9dccc" icon={faCaretDown} onClick={scrollToBottom} />
             )}
           </Col>
         </Row>

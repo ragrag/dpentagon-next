@@ -69,24 +69,31 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
           <>
             {updatingCoverPhoto ? (
               <LoadingSpinner />
-            ) : (
+            ) : editable ? (
               <OverlayTrigger
                 placement={'bottom'}
                 show={coverEditVisible}
                 overlay={
                   <Popover id={`popover-positioned-bottom`} onMouseLeave={() => setCoverEditVisible(false)}>
                     <Popover.Content>
-                      <div>
-                        <Button
-                          variant="dark"
-                          onClick={() => {
-                            coverImageInput.current.click();
-                          }}
-                        >
-                          Upload Image
-                        </Button>
-                        <Button variant="danger">Delete Image</Button>
-                      </div>
+                      <Row className="justify-content-center">
+                        <Col className="text-center">
+                          <Button
+                            size="sm"
+                            variant="dark"
+                            onClick={() => {
+                              coverImageInput.current.click();
+                            }}
+                            style={{ marginBottom: '10px' }}
+                          >
+                            Upload Image
+                          </Button>
+                          <br></br>
+                          <Button size="sm" variant="danger">
+                            Delete Image
+                          </Button>
+                        </Col>
+                      </Row>
                     </Popover.Content>
                   </Popover>
                 }
@@ -100,7 +107,7 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                   height="312"
                 />
               </OverlayTrigger>
-            )}
+            ) : null}
           </>
         </div>
       </div>
@@ -114,24 +121,31 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
             <div style={{ display: 'inline-block' }} onClick={() => setDisplayImgEditVisible(!displayImgEditVisible)}>
               {updatingPhoto ? (
                 <LoadingSpinner />
-              ) : (
+              ) : editable ? (
                 <OverlayTrigger
                   placement={'bottom'}
                   show={displayImgEditVisible}
                   overlay={
                     <Popover id={`popover-positioned-bottom`} onMouseLeave={() => setDisplayImgEditVisible(false)}>
                       <Popover.Content>
-                        <div>
-                          <Button
-                            variant="dark"
-                            onClick={() => {
-                              displayImageInput.current.click();
-                            }}
-                          >
-                            Upload Image
-                          </Button>{' '}
-                          <Button variant="danger">Delete Image</Button>
-                        </div>
+                        <Row className="justify-content-center">
+                          <Col className="text-center">
+                            <Button
+                              size="sm"
+                              variant="dark"
+                              onClick={() => {
+                                displayImageInput.current.click();
+                              }}
+                              style={{ marginBottom: '10px' }}
+                            >
+                              Upload Image
+                            </Button>
+                            <br></br>
+                            <Button size="sm" variant="danger">
+                              Delete Image
+                            </Button>
+                          </Col>
+                        </Row>
                       </Popover.Content>
                     </Popover>
                   }
@@ -144,12 +158,13 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                     className="hoverable-opacity"
                   />
                 </OverlayTrigger>
-              )}
+              ) : null}
             </div>
           </div>
         </Col>
-        <Col md="5">
-          <h3>{user.displayName}</h3>
+
+        <Col md="5" style={{ marginTop: '20px' }}>
+          <h2>{user.displayName}</h2>
           <span onClick={() => setModalVisibility(true)} style={{ marginLeft: '35px', marginRight: '30px' }} className="hoverable-anchor">
             Contact Info
           </span>

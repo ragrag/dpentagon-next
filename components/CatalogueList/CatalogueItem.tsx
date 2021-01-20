@@ -18,9 +18,9 @@ export default function CatalogueItem({ catalogue, onClick }: Props) {
         onClick(catalogue.id);
       }}
     >
-      <Card.Img src="/catalogue-img.jpeg" height="120" alt="Card image" />
+      <Card.Img src="/catalogue-img.jpeg" height="80" alt="Card image" />
       <Card.ImgOverlay className="text-center my-auto">
-        <Card.Title className="mr-auto" style={{ color: '#000000', marginTop: '20px' }}>
+        <Card.Title className="mr-auto" style={{ color: '#000000' }}>
           {catalogue.name}
         </Card.Title>
 

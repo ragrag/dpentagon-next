@@ -9,7 +9,7 @@ export default function NavBar() {
           <Navbar expand="lg" variant={'light'} style={{ backgroundColor: '#000000' }} className="text-center">
             {/* <Navbar.Toggle aria-controls="basic-navbar-nav" style={{ color: '#FFFFFF' }} /> */}
             {/* <Navbar.Collapse id="basic-navbar-nav"> */}
-            <Nav className="m-auto" style={{ color: '#FFFFFF' }}>
+            <Nav className="m-auto  navbar-icons d-flex flex-row" style={{ color: '#FFFFFF' }}>
               <Nav.Link id="basic-nav-dropdown" style={{ marginRight: '25px' }}>
                 <NavDropDown professions={['architecture']} label="Architecture"></NavDropDown>
               </Nav.Link>

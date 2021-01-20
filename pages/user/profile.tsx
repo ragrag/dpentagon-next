@@ -12,8 +12,9 @@ import UserProfile from '../../components/UserProfile/UserProfile';
 import userCataloguesFetcher from '../../lib/requests/fetchers/userCataloguesFetcher';
 import userFetcher from '../../lib/requests/fetchers/userFetcher';
 import { defaultUser, userLoggedInState, userState } from '../../lib/store/user.store';
-import createCatalogueRequest from '../../lib/requests/mutators/createCatalogueRequest';
+import createPhotoPostRequest from '../../lib/requests/mutators/createCatalogueRequest';
 import * as yup from 'yup';
+import createCatalogueRequest from '../../lib/requests/mutators/createPhotoPostRequest';
 const schema = yup.string().email().required();
 export default function ProfilePage() {
   const [loggedInUserState, setLoggedInUserState] = useRecoilState(userState);
@@ -132,12 +133,16 @@ export default function ProfilePage() {
                     </OverlayTrigger>
                   </Col>
                   <br></br>
-                  <CatalogueList
-                    catalogues={catalogueData.catalogues}
-                    onItemClicked={catalogueId => {
-                      router.push(`/catalogue/${catalogueId}`);
-                    }}
-                  ></CatalogueList>
+                  <Row className="justify-content-center">
+                    <Col className="text-center" md="10">
+                      <CatalogueList
+                        catalogues={catalogueData.catalogues}
+                        onItemClicked={catalogueId => {
+                          router.push(`/catalogue/${catalogueId}`);
+                        }}
+                      ></CatalogueList>
+                    </Col>
+                  </Row>
                 </>
               )}
             </>

@@ -17,7 +17,14 @@ const UserRegistrationSchema = Yup.object().shape({
   displayName: Yup.string().min(2).required('Display name is required'),
   country: Yup.string().required('Country is required'),
   phoneNumber: Yup.string().phone(null, true, 'Phone Number must be valid').required('Phone number is required'),
-  address: Yup.string().nullable(),
+  address: Yup.string()
+    .nullable()
+    .when('userType', (userType, schema) => {
+      if (userType === 'company') {
+        return schema.min(3).required('Address is required for companies');
+      }
+      return schema;
+    }),
   email: Yup.string().email().required('Email is required'),
   professionId: Yup.number().required('Profession is required'),
   password: Yup.string().min(6).required('Password is required'),
