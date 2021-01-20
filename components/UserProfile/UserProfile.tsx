@@ -96,67 +96,77 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
 
   return (
     <>
-      <div style={{ maxWidth: '820' }}>
-        <div style={{ display: 'inline-block' }} onClick={() => setCoverEditVisible(!coverEditVisible)}>
-          <>
-            {updatingCoverPhoto ? (
-              <LoadingSpinner />
-            ) : editable ? (
-              <OverlayTrigger
-                placement={'bottom'}
-                show={coverEditVisible}
-                overlay={
-                  <Popover id={`popover-positioned-bottom`} onMouseLeave={() => setCoverEditVisible(false)}>
-                    <Popover.Content>
-                      <Row className="justify-content-center">
-                        <Col className="text-center">
-                          <Button
-                            size="sm"
-                            variant="dark"
-                            onClick={() => {
-                              coverImageInput.current.click();
-                            }}
-                            style={{ marginBottom: '10px' }}
-                          >
-                            Upload Image
-                          </Button>
-                          <br></br>
-                          <Button
-                            onClick={() => {
-                              deleteCoverPhoto();
-                            }}
-                            size="sm"
-                            variant="danger"
-                          >
-                            Delete Image
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Popover.Content>
-                  </Popover>
-                }
-              >
+      <div style={{ display: 'inline-block' }} onClick={() => setCoverEditVisible(!coverEditVisible)}>
+        <>
+          {updatingCoverPhoto ? (
+            <LoadingSpinner />
+          ) : (
+            <Row className="justify-content-center">
+              <Col>
                 <Image
                   fluid
-                  className="hoverable-opacity"
-                  style={{ zIndex: 0, borderBottom: '1px solid #AAAAAA', maxWidth: 820, maxHeight: 312 }}
+                  style={{ zIndex: 0, borderBottom: '1px solid #AAAAAA', maxWidth: 820, maxHeight: 312, opacity: 0.87 }}
                   src={user.coverPhoto ? user.coverPhoto + `?key=${uuid()}` : '/cover.jpeg'}
                   width="820"
                   height="312"
                 />
-              </OverlayTrigger>
-            ) : (
-              <Image
-                style={{ backgroundColor: '#FFF', borderRadius: '50%', zIndex: 9, border: '3px solid #FFFFFF' }}
-                src={user.photo ? user.photo + `?key=${uuid()}` : '/user-photo.jpg'}
-                width="150"
-                height="150"
-                className="hoverable"
-              />
-            )}
-          </>
-        </div>
+                {editable ? (
+                  <OverlayTrigger
+                    placement={'bottom'}
+                    show={coverEditVisible}
+                    overlay={
+                      <Popover id={`popover-positioned-bottom`} onMouseLeave={() => setCoverEditVisible(false)}>
+                        <Popover.Content>
+                          <Row className="justify-content-center">
+                            <Col className="text-center">
+                              <Button
+                                size="sm"
+                                variant="dark"
+                                onClick={() => {
+                                  coverImageInput.current.click();
+                                }}
+                                style={{ marginBottom: '10px' }}
+                              >
+                                Upload Image
+                              </Button>
+                              <br></br>
+                              <Button
+                                onClick={() => {
+                                  deleteCoverPhoto();
+                                }}
+                                size="sm"
+                                variant="danger"
+                              >
+                                Delete Image
+                              </Button>
+                            </Col>
+                          </Row>
+                        </Popover.Content>
+                      </Popover>
+                    }
+                  >
+                    <Button
+                      className="text-right hoverable-opacity"
+                      variant="dark"
+                      size="sm"
+                      style={{
+                        margin: '-70px 10px 0px 50px',
+                        left: '37%',
+                        zIndex: 9,
+                        position: 'relative',
+                        opacity: 0.5,
+                      }}
+                    >
+                      Add Photo
+                    </Button>
+                  </OverlayTrigger>
+                ) : null}
+              </Col>
+            </Row>
+          )}
+        </>
       </div>
+
       <Row className="justify-content-left">
         <Col className="text-left" md="5">
           <div

@@ -129,7 +129,7 @@ export default function ProfilePage() {
                         </Popover>
                       }
                     >
-                      <FontAwesomeIcon className="hoverable" size="2x" color="#000" icon={faPlusCircle} />
+                      <FontAwesomeIcon className="hoverable" size="lg" color="#000" icon={faPlusCircle} />
                     </OverlayTrigger>
                   </Col>
                   <br></br>
