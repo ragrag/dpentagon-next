@@ -21,6 +21,7 @@ const ContactInfoSchema = Yup.object().shape({
   profileInfo: Yup.string().nullable(),
   country: Yup.string().required('Country is required'),
   phoneNumber: Yup.string().phone('Phone number must be valid'),
+  website: Yup.string().nullable(),
   address: Yup.string().nullable(),
 });
 
@@ -56,6 +57,7 @@ export default function UserContactInfo({ visible, setModalVisibility, user, rea
             profileInfo: user?.profileInfo ?? '',
             country: user?.country ?? '',
             phoneNumber: user?.phoneNumber ?? '',
+            website: user?.website ?? '',
             address: user?.address ?? '',
           }}
           validationSchema={ContactInfoSchema}
@@ -81,7 +83,8 @@ export default function UserContactInfo({ visible, setModalVisibility, user, rea
                 true,
               );
             } catch (err) {
-              alert('Something went wrong, please try again later');
+              if (err.response?.status === 400 && err.response?.data?.message) alert(err.response.data.message);
+              else alert('Something went wrong, please try again later');
             }
           }}
           validateOnChange={false}
@@ -201,6 +204,24 @@ export default function UserContactInfo({ visible, setModalVisibility, user, rea
                     onChange={handleChange}
                   />
                   {errors.phoneNumber ? <div style={{ color: '#FF0000' }}> {errors.phoneNumber}</div> : null}
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row} controlId="formPlaintextWebsite">
+                <Form.Label column sm="3">
+                  <span className="bold-text">Website Link:</span>
+                </Form.Label>
+                <Col sm="6">
+                  <Form.Control
+                    style={{
+                      backgroundColor: readOnly ? '' : '#FFF',
+                    }}
+                    name="website"
+                    plaintext
+                    readOnly={readOnly}
+                    value={values.website}
+                    onChange={handleChange}
+                  />
+                  {errors.website ? <div style={{ color: '#FF0000' }}> {errors.website}</div> : null}
                 </Col>
               </Form.Group>
               <Form.Group as={Row} controlId="formPlaintextEmail">

@@ -104,7 +104,7 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
           ) : (
             <Row className="justify-content-center">
               <Col>
-                <div style={{ opacity: 0.9 }}>
+                <div>
                   <Image src={user.coverPhoto ? user.coverPhoto + `?key=${uuid()}` : '/cover.jpeg'} width="820" height="312" />
                 </div>
                 {editable ? (
@@ -146,6 +146,7 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                       className="text-right hoverable-opacity"
                       variant="dark"
                       size="sm"
+                      onClick={() => setCoverEditVisible(true)}
                       style={{
                         margin: '-90px 10px 0px 50px',
                         left: '35%',

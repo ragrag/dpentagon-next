@@ -9,6 +9,7 @@ export interface RegisterUserDTO {
   country: string;
   address: string;
   phoneNumber: string;
+  website: string;
 }
 
 const userRegister = async (registerUserDTO: RegisterUserDTO): Promise<void> => {

@@ -35,8 +35,8 @@ export default function Footer() {
   }, []);
   return (
     <>
-      <footer>
-        <Row className="justify-content-md-center" style={{ backgroundColor: '#000' }}>
+      <footer style={{ alignContent: 'center' }} className="text-center">
+        <Row className="justify-content-center" style={{ backgroundColor: '#000', width: '100%' }}>
           <Col className="my-auto text-center " xs="4" md="4">
             <Link href="/">
               <div>

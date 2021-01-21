@@ -14,6 +14,7 @@ export default interface User {
   coverPhoto: string;
   phoneNumber: string;
   address: string;
+  website: string;
   createdAt: Date;
   updatedAt: Date;
 }

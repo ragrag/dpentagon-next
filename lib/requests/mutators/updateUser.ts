@@ -8,6 +8,7 @@ export interface UpdateUserDTO {
   profileInfo: string;
   professionId: number;
   email: string;
+  website: string;
 }
 
 const updateUserRequest = async (updateUserDTO: UpdateUserDTO): Promise<void> => {

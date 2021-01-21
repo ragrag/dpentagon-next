@@ -75,7 +75,7 @@ export default function NavDropDown(props: Props) {
           size="sm"
           color="#e9dccc"
           icon={faCaretDown}
-          style={{ marginLeft: '10px' }}
+          style={{ marginLeft: '10px', marginRight: '4px' }}
           className="hoverable"
         />
       </div>

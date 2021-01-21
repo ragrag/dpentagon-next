@@ -53,6 +53,25 @@ export default function BasicInformationForm({ registrationData, setRegistration
               />
             </Col>
           </Form.Group>
+
+          <Form.Group as={Row} controlId="formPlaintextWebsite">
+            <Form.Label column sm="4">
+              <span className="bold-text">Website Link:</span>
+            </Form.Label>
+            <Col sm="6">
+              <Form.Control
+                name="website"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                }}
+                plaintext
+                value={registrationData.website}
+                onChange={e => {
+                  setRegistrationData({ ...registrationData, website: e.target.value });
+                }}
+              />
+            </Col>
+          </Form.Group>
         </Col>
       </Form.Group>
     </Form>

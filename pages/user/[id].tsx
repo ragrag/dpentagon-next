@@ -44,7 +44,7 @@ export default function UserPage({ userId }: InferGetServerSidePropsType<typeof 
   const loadingCatalogues = !catalogueData || isValidatingCatalogues;
   return (
     <>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center h-100" style={{ minHeight: '100vh', height: '100vh' }}>
         <Col md="8" className="text-center">
           {errorUser ? (
             <h5>Error getting user data</h5>
@@ -73,6 +73,8 @@ export default function UserPage({ userId }: InferGetServerSidePropsType<typeof 
           )}
         </Col>
       </Row>
+      <br></br>
+      <br></br>
     </>
   );
 }

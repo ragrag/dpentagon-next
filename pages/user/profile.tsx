@@ -56,7 +56,7 @@ export default function ProfilePage() {
   const loadingCatalogues = !catalogueData || isValidatingCatalogues;
   return (
     <>
-      <Row className="justify-content-center">
+      <Row className="justify-content-center h-100" style={{ minHeight: '100vh', height: '100vh' }}>
         <Col md="8" className="text-center">
           {!loggedInUserState.loggedIn ? (
             <Link href="/login">Register now to get a profile</Link>
@@ -149,6 +149,8 @@ export default function ProfilePage() {
           )}
         </Col>
       </Row>
+      <br></br>
+      <br></br>
     </>
   );
 }

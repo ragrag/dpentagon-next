@@ -62,7 +62,7 @@ export default function LoginPage() {
                 loggedIn: true,
                 ...response.data,
               });
-              router.replace(`/`);
+              router.replace(`/user/profile`);
             } catch (err) {
               if (err.response?.status === 401) {
                 setCredentialError(true);

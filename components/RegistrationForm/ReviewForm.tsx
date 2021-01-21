@@ -17,6 +17,7 @@ const UserRegistrationSchema = Yup.object().shape({
   displayName: Yup.string().min(2).required('Display name is required'),
   country: Yup.string().required('Country is required'),
   phoneNumber: Yup.string().phone(null, true, 'Phone Number must be valid').required('Phone number is required'),
+  website: Yup.string().nullable(),
   address: Yup.string()
     .nullable()
     .when('userType', (userType, schema) => {
@@ -53,6 +54,7 @@ export default function ReviewForm({ registrationData, professions, redirectToLo
             displayName: registrationData.displayName,
             country: registrationData.country,
             phoneNumber: registrationData.phoneNumber,
+            website: registrationData.website,
             address: registrationData.address,
             email: registrationData.email,
             professionId: registrationData.professionId,
@@ -145,6 +147,16 @@ export default function ReviewForm({ registrationData, professions, redirectToLo
                   <Col sm="6">
                     <Form.Control name="phoneNumber" plaintext readOnly value={values.phoneNumber} onChange={handleChange} />
                     {errors.phoneNumber ? <div style={{ color: '#FF0000' }}> {errors.phoneNumber}</div> : null}
+                  </Col>
+                </Form.Group>
+
+                <Form.Group as={Row} controlId="formPlaintextWebsite">
+                  <Form.Label column sm="4">
+                    <span className="bold-text">Website Link:</span>
+                  </Form.Label>
+                  <Col sm="6">
+                    <Form.Control name="website" plaintext readOnly value={values.website} onChange={handleChange} />
+                    {errors.website ? <div style={{ color: '#FF0000' }}> {errors.website}</div> : null}
                   </Col>
                 </Form.Group>
 

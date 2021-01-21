@@ -1,10 +1,11 @@
 import { faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
+import { Button, Col, Form, Modal, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import { useRecoilState } from 'recoil';
 import useSWR, { useSWRInfinite } from 'swr';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
@@ -13,6 +14,7 @@ import PaginatedPostList from '../../components/Post/PaginatedPostList';
 import catalogueByIdFetcher from '../../lib/requests/fetchers/catalogueFetcherById';
 import cataloguePostsFetcher from '../../lib/requests/fetchers/cataloguePostsFetcher';
 import deleteCatalogueRequest from '../../lib/requests/mutators/deleteCatalogueRequest';
+import updateCatalogueRequest from '../../lib/requests/mutators/updateCatalogueRequest';
 import { userState } from '../../lib/store/user.store';
 import readImageFromFile from '../../lib/util/readImage';
 
@@ -20,7 +22,9 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
   const router = useRouter();
   const [user, setUser] = useRecoilState(userState);
   const [newPostModalVisible, setNewPostModalVisible] = React.useState(false);
-
+  const coverImageInput = React.useRef(null);
+  const [updatingCoverPhoto, setUpdatingCoverPhoto] = React.useState(false);
+  const [coverEditVisible, setCoverEditVisible] = React.useState(false);
   const [deletionModalVisible, setDeletionModalVisible] = React.useState(false);
 
   const catalogueDeletionModal = (
@@ -94,6 +98,25 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
 
   const loadingCatalogue = !catalogue || isValidatingCatalogue;
   const loadingPosts = !postsData || isValidatingPostsData;
+
+  const updateCoverPhoto = async e => {
+    setUpdatingCoverPhoto(true);
+    setCoverEditVisible(false);
+    const image = await readImageFromFile(e.target.files[0]);
+
+    try {
+      const newCataloguePhotoUrl = await updateCatalogueRequest(catalogue.id, { name: catalogue.name, photo: image.base64 });
+
+      mutateCatalogue(
+        {
+          ...catalogue,
+          photo: newCataloguePhotoUrl,
+        },
+        false,
+      );
+      setUpdatingCoverPhoto(false);
+    } catch (err) {}
+  };
   return (
     <>
       <Row className="justify-content-center">
@@ -102,25 +125,107 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
             <LoadingSpinner />
           ) : (
             <>
-              <Link href={`/user/${catalogue.user.id}`}>
-                <h4 className="text-left hoverable">
-                  {catalogue.name} by {catalogue.user.displayName}
-                </h4>
-              </Link>
+              {updatingCoverPhoto ? (
+                <LoadingSpinner />
+              ) : (
+                <Row className="justify-content-center">
+                  <Col>
+                    <div>
+                      <Image src={catalogue.photo ? catalogue.photo : '/cover.jpeg'} width="820" height="312" />
+                    </div>
+                    {catalogue.user.id === user?.id ? (
+                      <OverlayTrigger
+                        placement={'bottom'}
+                        show={coverEditVisible}
+                        overlay={
+                          <Popover id={`popover-positioned-bottom`} onMouseLeave={() => setCoverEditVisible(false)}>
+                            <Popover.Content>
+                              <Row className="justify-content-center">
+                                <Col className="text-center">
+                                  <Button
+                                    size="sm"
+                                    variant="dark"
+                                    onClick={() => {
+                                      coverImageInput.current.click();
+                                    }}
+                                    style={{ marginBottom: '10px' }}
+                                  >
+                                    Upload Image
+                                  </Button>
+                                  {/* <br></br>
+                                  <Button
+                                    onClick={() => {
+                                      deleteCoverPhoto();
+                                    }}
+                                    size="sm"
+                                    variant="danger"
+                                  >
+                                    Delete Image
+                                  </Button> */}
+                                </Col>
+                              </Row>
+                            </Popover.Content>
+                          </Popover>
+                        }
+                      >
+                        <Button
+                          className="text-right hoverable-opacity"
+                          variant="dark"
+                          size="sm"
+                          onClick={() => setCoverEditVisible(true)}
+                          style={{
+                            margin: '-90px 10px 0px 50px',
+                            left: '35%',
+                            zIndex: 9,
+                            position: 'relative',
+                            opacity: 0.5,
+                          }}
+                        >
+                          Add Photo
+                        </Button>
+                      </OverlayTrigger>
+                    ) : null}
+                  </Col>
+                </Row>
+              )}
+
+              <Row>
+                <Col className="text-left">
+                  <span style={{ fontWeight: 'bold', fontSize: 28 }} className="text-left">
+                    {catalogue.name}
+                  </span>
+                  {catalogue.user.id === user?.id ? (
+                    <FontAwesomeIcon
+                      style={{ marginLeft: '10px', marginBottom: '4px' }}
+                      onClick={() => setDeletionModalVisible(true)}
+                      className="hoverable"
+                      size="lg"
+                      color="#000"
+                      icon={faTrashAlt}
+                    />
+                  ) : null}
+                  <br></br>
+                  <Link href={`/user/${catalogue.user.id}`}>
+                    <span className="hoverable-anchor" style={{ fontWeight: 500, fontSize: 22 }}>
+                      by {catalogue.user.displayName}
+                    </span>
+                  </Link>
+                </Col>
+              </Row>
 
               {catalogue.user.id === user?.id ? (
-                <Col className="text-right">
-                  <FontAwesomeIcon
-                    onClick={() => setNewPostModalVisible(true)}
-                    className="hoverable"
-                    size="lg"
-                    color="#000"
-                    icon={faPlusCircle}
-                    style={{ marginRight: '10px' }}
-                  />
-
-                  <FontAwesomeIcon onClick={() => setDeletionModalVisible(true)} className="hoverable" size="lg" color="#000" icon={faTrashAlt} />
-                </Col>
+                <Row>
+                  <Col className="text-right">
+                    <FontAwesomeIcon
+                      onClick={() => setNewPostModalVisible(true)}
+                      className="hoverable"
+                      size="lg"
+                      color="#000"
+                      icon={faPlusCircle}
+                      style={{ marginRight: '10px' }}
+                    />
+                  </Col>
+                </Row>
               ) : null}
               <NewPostModal
                 newPost={newPost}
@@ -151,6 +256,16 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
           )}
         </Col>
       </Row>
+      <input
+        type="file"
+        ref={coverImageInput}
+        onChange={async e => {
+          await updateCoverPhoto(e);
+        }}
+        style={{ display: 'none' }}
+        name="coverImage"
+        accept="image/*"
+      />
       {catalogueDeletionModal}
     </>
   );

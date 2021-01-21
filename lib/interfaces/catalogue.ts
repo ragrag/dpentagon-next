@@ -6,6 +6,7 @@ export default interface Catalogue {
   user: User;
   posts?: Post[];
   name: string;
+  photo: string;
   createdAt: Date;
   updatedAt: Date;
 }
