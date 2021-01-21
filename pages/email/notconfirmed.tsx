@@ -29,18 +29,22 @@ export default function EmailNotConfirmedPage({ email }: InferGetServerSideProps
     <>
       <Row className={`justify-content-md-center h-100`} style={{ minHeight: '100vh', height: '100vh', backgroundColor: '#e9dccc' }}>
         <Col md="8" className="text-center">
-          <h5>A Confirmation Email Has Been Sent To {email}</h5>
+          <br></br>
+          <h6>A Confirmation Email Has Been Sent To {email}</h6>
 
           <Button
+            size="sm"
             variant="dark"
             disabled={buttonDisabled}
             onClick={() => {
               sendConfirmationEmail();
             }}
+            style={{ marginBottom: '10px' }}
           >
             Resend
           </Button>
-          {buttonDisabled ? <h6>You can try again in 30 seconds</h6> : null}
+          <br></br>
+          {buttonDisabled ? <span>You can try again in 30 seconds</span> : null}
         </Col>
       </Row>
     </>

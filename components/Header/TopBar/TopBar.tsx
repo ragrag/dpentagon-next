@@ -18,8 +18,8 @@ export default function TopBar({ loggedIn, logoutUser }: Props) {
   const [searchTerm, setSearchTerm] = React.useState('');
   return (
     <>
-      <Row className={`${globalStyles.primaryBg} justify-content-md-center`} style={{ height: '65px', minWidth: '100%' }}>
-        <Col xs="3" className="my-auto">
+      <Row className={`${globalStyles.primaryBg} justify-content-md-center h-100`} style={{ height: '45px', minWidth: '100%' }}>
+        <Col xs="3" className="text-center my-auto">
           {loggedIn ? (
             <h5
               className="text-center hoverable"
@@ -46,15 +46,17 @@ export default function TopBar({ loggedIn, logoutUser }: Props) {
           <>
             <Link href="/">
               <div className="text-center">
-                <Image className="hoverable" src="/logo-black.png" alt="DPentagon Logo" width={35} height={35} />
+                <img className="hoverable" src="/logo-black.png" alt="DPentagon Logo" width={35} height={35} style={{ marginBottom: 0 }} />
               </div>
             </Link>
-
             <Link href="/">
-              <h5 className="hoverable text-center" style={{ fontWeight: 'bold', fontFamily: 'Athelas', whiteSpace: 'nowrap' }}>
+              <span
+                className="hoverable text-center"
+                style={{ fontWeight: 900, fontFamily: 'Athelas', whiteSpace: 'nowrap', fontSize: 12, marginTop: 0 }}
+              >
                 D.PENTAGON
-              </h5>
-            </Link>
+              </span>
+            </Link>{' '}
           </>
         </Col>
         <Col xs="3" className="my-auto text-center" style={{ overflow: 'auto' }}>
@@ -94,15 +96,15 @@ export default function TopBar({ loggedIn, logoutUser }: Props) {
         }
 
         input[type='search'] {
-          background: #ededed url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png) no-repeat 9px center;
+          background: #ededed url(/search-icon-2.png) no-repeat 1px center;
           border: solid 1px #e9dccc;
           padding: 9px 10px 9px 32px;
           width: 55px;
-
+          background-size: 25px 25px;
           -webkit-border-radius: 10em;
           -moz-border-radius: 10em;
           border-radius: 10em;
-
+          height: 15px;
           -webkit-transition: all 0.5s;
           -moz-transition: all 0.5s;
           transition: all 0.5s;

@@ -33,6 +33,7 @@ export default function EmailNotConfirmedPage({ token }: InferGetServerSideProps
     <>
       <Row className={`justify-content-md-center h-100`} style={{ minHeight: '100vh', height: '100vh', backgroundColor: '#e9dccc' }}>
         <Col md="8" className="text-center">
+          <br></br>
           {loading ? (
             <LoadingSpinner />
           ) : error ? (

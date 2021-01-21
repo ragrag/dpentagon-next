@@ -36,9 +36,11 @@ export default function PasswordForgetPage() {
     <>
       <Row className={`justify-content-md-center h-100`} style={{ minHeight: '100vh', height: '100vh', backgroundColor: '#e9dccc' }}>
         <Col md="4" className="text-center">
-          <h5>Enter your email and a password reset link will be sent</h5>
+          <br></br>
+          <h6>Enter your email and a password reset link will be sent</h6>
 
           <Form.Control
+            className="text-center"
             name="email"
             style={{
               backgroundColor: '#FFFFFF',
@@ -51,15 +53,18 @@ export default function PasswordForgetPage() {
           />
           <br></br>
           <Button
+            size="sm"
             variant="dark"
             disabled={buttonDisabled}
             onClick={() => {
               sendPasswordResetEmail();
             }}
+            style={{ marginBottom: '10px' }}
           >
             Send Password Reset
           </Button>
-          {buttonDisabled ? <h6>You can try again in 30 seconds</h6> : null}
+          <br></br>
+          {buttonDisabled ? <span>You can try again in 30 seconds</span> : null}
         </Col>
       </Row>
     </>
