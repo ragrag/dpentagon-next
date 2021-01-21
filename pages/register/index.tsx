@@ -33,6 +33,7 @@ export default function RegisterPage() {
     address: null,
     professionId: null,
     userType: 'freelancer',
+    website: '',
   });
   const steps = [
     {

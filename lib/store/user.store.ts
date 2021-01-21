@@ -21,6 +21,7 @@ const defaultUser: UserState = {
   profileInfo: null,
   updatedAt: null,
   userType: null,
+  website: null,
 };
 
 const userState = atom({
