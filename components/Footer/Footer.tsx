@@ -36,7 +36,7 @@ export default function Footer() {
   return (
     <>
       <footer style={{ alignContent: 'center' }} className="text-center">
-        <Row className="justify-content-center" style={{ backgroundColor: '#000', width: '100%' }}>
+        <Row className="justify-content-center" style={{ backgroundColor: '#000', width: '100%', marginBottom: '0px' }}>
           <Col className="my-auto text-center " xs="4" md="4">
             <Link href="/">
               <div>
@@ -50,6 +50,9 @@ export default function Footer() {
                 <Image className="hoverable" src="/logo-custom.png" alt="DPentagon Logo" width={60} height={60} />
               </div>
             </Link>
+            {/* <span style={{ fontSize: 10, color: '#FFF' }} className="hoverable-anchor">
+              contact us
+            </span> */}
           </Col>
           <Col className="my-auto text-center" xs="4" md="4">
             {isVisible ? (
@@ -66,7 +69,7 @@ export default function Footer() {
           bottom: 0;
           // right: 0;
           width: 100%;
-          height: 10%;
+          background-color: #000000;
           position: fixed;
           z-index: 10000;
         }

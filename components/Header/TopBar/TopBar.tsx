@@ -46,10 +46,17 @@ export default function TopBar({ loggedIn, logoutUser }: Props) {
           <>
             <Link href="/">
               <div className="text-center">
-                <img className="hoverable" src="/logo-black.png" alt="DPentagon Logo" width={35} height={35} style={{ marginBottom: 0 }} />
+                <img
+                  className="hoverable"
+                  src="/logo-black.png"
+                  alt="DPentagon Logo"
+                  width={35}
+                  height={35}
+                  style={{ marginBottom: 0, marginTop: '3px' }}
+                />
               </div>
             </Link>
-            <Link href="/">
+            <Link href="/contact">
               <span
                 className="hoverable text-center"
                 style={{ fontWeight: 900, fontFamily: 'Athelas', whiteSpace: 'nowrap', fontSize: 12, marginTop: 0 }}
