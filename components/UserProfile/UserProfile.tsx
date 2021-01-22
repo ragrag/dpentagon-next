@@ -112,7 +112,7 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                     placement={'bottom'}
                     show={coverEditVisible}
                     overlay={
-                      <Popover id={`popover-positioned-bottom`} onMouseLeave={() => setCoverEditVisible(false)}>
+                      <Popover id={`popover-positioned-bottom-profile`} onMouseLeave={() => setCoverEditVisible(false)}>
                         <Popover.Content>
                           <Row className="justify-content-center">
                             <Col className="text-center">
@@ -180,7 +180,7 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
                   placement={'bottom'}
                   show={displayImgEditVisible}
                   overlay={
-                    <Popover id={`popover-positioned-bottom`} onMouseLeave={() => setDisplayImgEditVisible(false)}>
+                    <Popover id={`popover-positioned-bottom-profile-2`} onMouseLeave={() => setDisplayImgEditVisible(false)}>
                       <Popover.Content>
                         <Row className="justify-content-center">
                           <Col className="text-center">

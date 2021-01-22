@@ -155,7 +155,7 @@ export default function CataloguePage({ catalogueId, initialCatalogue }: InferGe
                         placement={'bottom'}
                         show={coverEditVisible}
                         overlay={
-                          <Popover id={`popover-positioned-bottom`} onMouseLeave={() => setCoverEditVisible(false)}>
+                          <Popover id={`popover-positioned-bottom-catalogue`} onMouseLeave={() => setCoverEditVisible(false)}>
                             <Popover.Content>
                               <Row className="justify-content-center">
                                 <Col className="text-center">

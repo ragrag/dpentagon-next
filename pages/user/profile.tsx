@@ -100,7 +100,7 @@ export default function ProfilePage() {
                       placement={'bottom'}
                       trigger="click"
                       overlay={
-                        <Popover id={`popover-positioned-bottom`}>
+                        <Popover id={`popover-positioned-bottom-profile-3`}>
                           <Popover.Content>
                             <Row className="justify-content-center">
                               <Col className="text-center">
