@@ -112,7 +112,7 @@ export default function CataloguePage({ catalogueId, initialCatalogue }: InferGe
           ...catalogue,
           photo: newCataloguePhotoUrl,
         },
-        false,
+        true,
       );
       setUpdatingCoverPhoto(false);
     } catch (err) {}
