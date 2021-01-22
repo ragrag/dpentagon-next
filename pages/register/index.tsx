@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
@@ -47,6 +48,14 @@ export default function RegisterPage() {
   ];
   return (
     <>
+      <Head>
+        <title>DPentagon - Register</title>
+        <meta property="og:title" content="Join DPentagon" />
+        <meta property="og:description" content="Join DPentagon And Start Creating Your Catalogue" />
+        <meta property="og:url" content="www.dpentagon.com/register" />
+        <meta name="twitter:card" content="Join DPentagon And Start Creating Your Catalogue" />
+        <meta property="og:site_name" content="DPentagon" />
+      </Head>
       <Row className={`justify-content-md-center h-100`} style={{ minHeight: '100vh', height: '100vh', backgroundColor: '#e9dccc' }}>
         <Col className="text-center" md="12" xs="12">
           <br></br>

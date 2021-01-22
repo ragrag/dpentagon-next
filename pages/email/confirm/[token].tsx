@@ -1,4 +1,5 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
@@ -31,6 +32,9 @@ export default function EmailNotConfirmedPage({ token }: InferGetServerSideProps
 
   return (
     <>
+      <Head>
+        <title>DPentagon</title>
+      </Head>
       <Row className={`justify-content-md-center h-100`} style={{ minHeight: '100vh', height: '100vh', backgroundColor: '#e9dccc' }}>
         <Col md="8" className="text-center">
           <br></br>

@@ -127,7 +127,7 @@ export default function CataloguePage({ catalogueId, initialCatalogue }: InferGe
             <meta property="og:description" content={'Check out ' + catalogue.name + ' by ' + catalogue.user.displayName} />
             <meta property="og:image" content={catalogue.photo} />
             <meta property="og:url" content={`www.dpentagon.com/catalogue/${catalogue.id}`} />
-            <meta name="twitter:card" content={catalogue.name + ' by ' + catalogue.user.displayName} />
+            <meta name="twitter:card" content={'Check out ' + catalogue.name + ' by ' + catalogue.user.displayName} />
             <meta property="og:site_name" content="DPentagon" />
           </>
         ) : (

@@ -1,13 +1,15 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Head from 'next/head';
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 import useSWR from 'swr';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import PostItem from '../../components/Post/PostItem';
 import UserContactInfo from '../../components/UserProfile/UserContactInfo';
+import Post from '../../lib/interfaces/post';
 import postByIdFetcher from '../../lib/requests/fetchers/postByIdFetcher';
 
-export default function PostPage({ postId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function PostPage({ postId, initialPost }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [modalVisible, setModalVisibility] = React.useState(false);
 
   const { data: post, error: postError, isValidating: isValidatingPost } = useSWR(
@@ -16,13 +18,33 @@ export default function PostPage({ postId }: InferGetServerSidePropsType<typeof 
       const post = await postByIdFetcher(postId);
       return post;
     },
-    { initialData: null },
+    { initialData: initialPost, revalidateOnFocus: false },
   );
 
   const loading = !post || isValidatingPost;
 
   return (
     <>
+      <Head>
+        {post ? (
+          <>
+            <title>{(post.caption ? post.caption : 'Post') + ' by ' + post.catalogue.user.displayName}</title>
+            <meta property="og:title" content={(post.caption ? post.caption : 'Post') + ' by ' + post.catalogue.user.displayName} />
+            <meta
+              property="og:description"
+              content={'Check out ' + (post.caption ? post.caption : 'a post') + ' by ' + post.catalogue.user.displayName}
+            />
+            <meta property="og:image" content={post.url} />
+            <meta property="og:url" content={`www.dpentagon.com/post/${post.id}`} />
+            <meta name="twitter:card" content={'Check out ' + (post.caption ? post.caption : 'a post') + ' by ' + post.catalogue.user.displayName} />
+            <meta property="og:site_name" content="DPentagon" />
+          </>
+        ) : (
+          <>
+            <title>DPentagon - Catalogue</title>
+          </>
+        )}
+      </Head>
       <br></br>
       <Row className={`justify-content-md-center`} style={{ overflow: 'auto' }}>
         <Col className="text-center" md="8" xs="8">
@@ -49,5 +71,10 @@ export default function PostPage({ postId }: InferGetServerSidePropsType<typeof 
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const postId = Number(context.params.id as string);
-  return { props: { postId } };
+  try {
+    const intialPost: Post = await postByIdFetcher(postId);
+    return { props: { postId, intialPost } };
+  } catch (err) {
+    return { props: { postId, intialPost: null } };
+  }
 };
