@@ -38,7 +38,7 @@ export default function UserPage({ userId, initialUser }: InferGetServerSideProp
       <Head>
         {user ? (
           <>
-            <title>{user.displayName}</title>
+            <title>{user.displayName} on DPentagon</title>
             <meta property="og:title" content={user.displayName + ' on DPentagon'} />
             <meta property="og:description" content={'Check out ' + user.displayName + ' on DPentagon'} />
             <meta property="og:image" content={user.photo} />
