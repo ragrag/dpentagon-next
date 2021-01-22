@@ -1,9 +1,9 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import React from 'react';
-import { Row, Col, Button, Form } from 'react-bootstrap';
-import resetPassword from '../../../lib/requests/mutators/resetPassword';
-import * as yup from 'yup';
 import { useRouter } from 'next/router';
+import React from 'react';
+import { Button, Col, Form, Row } from 'react-bootstrap';
+import * as yup from 'yup';
+import resetPassword from '../../../lib/requests/mutators/resetPassword';
 
 export default function PasswordResetPage({ token }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();

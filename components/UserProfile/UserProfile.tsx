@@ -1,16 +1,16 @@
-import React from 'react';
 import Image from 'next/image';
-import { Button, Col, Image as BootstrapImage, OverlayTrigger, Popover, Row, Modal, Form } from 'react-bootstrap';
+import React from 'react';
+import { Button, Col, Image as BootstrapImage, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import { mutateCallback } from 'swr/dist/types';
-import User from '../../lib/interfaces/user';
 import { v4 as uuid } from 'uuid';
-import readImageFromFile from '../../lib/util/readImage';
-import UserContactInfo from './UserContactInfo';
-import updateUserCoverRequest from '../../lib/requests/mutators/updateUserCoverRequest';
-import updateUserPhotoRequest from '../../lib/requests/mutators/updateUserPhotoRequest';
-import LoadingSpinner from '../Loading/LoadingSpinner';
+import User from '../../lib/interfaces/user';
 import deleteCoverPhotoRequest from '../../lib/requests/mutators/deleteCoverPhotoRequest';
 import deleteProfilePhotoRequest from '../../lib/requests/mutators/deleteProfilePhotoRequest';
+import updateUserCoverRequest from '../../lib/requests/mutators/updateUserCoverRequest';
+import updateUserPhotoRequest from '../../lib/requests/mutators/updateUserPhotoRequest';
+import readImageFromFile from '../../lib/util/readImage';
+import LoadingSpinner from '../Loading/LoadingSpinner';
+import UserContactInfo from './UserContactInfo';
 type Props = {
   user: User;
   mutateUser?: (data?: User | Promise<User> | mutateCallback<User>, shouldRevalidate?: boolean) => Promise<User>;

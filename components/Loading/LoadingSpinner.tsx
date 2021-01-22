@@ -1,5 +1,5 @@
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleNotch, faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
 

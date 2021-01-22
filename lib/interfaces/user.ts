@@ -1,4 +1,3 @@
-import Catalogue from './catalogue';
 import Profession from './profession';
 
 export default interface User {

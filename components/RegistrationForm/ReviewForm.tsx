@@ -1,10 +1,10 @@
 import { Formik } from 'formik';
 import React from 'react';
-import userRegister, { RegisterUserDTO } from '../../lib/requests/mutators/userRegister';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import * as Yup from 'yup';
 import 'yup-phone';
-import { Button, Col, Form, Row } from 'react-bootstrap';
 import Profession from '../../lib/interfaces/profession';
+import userRegister, { RegisterUserDTO } from '../../lib/requests/mutators/userRegister';
 import LoadingSpinner from '../Loading/LoadingSpinner';
 
 type Props = {

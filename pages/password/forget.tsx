@@ -1,7 +1,5 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import React from 'react';
-import { Row, Col, Button, Form } from 'react-bootstrap';
-import requestEmailConfirmation from '../../lib/requests/mutators/requestEmailConfirmation';
+import { Button, Col, Form, Row } from 'react-bootstrap';
 import * as yup from 'yup';
 import requestPasswordReset from '../../lib/requests/mutators/requestPasswordReset';
 

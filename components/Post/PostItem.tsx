@@ -1,16 +1,15 @@
-import { faCaretRight, faTrash, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCaretRight, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import dayjs from 'dayjs';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { Button, Card, Col, Modal, Row } from 'react-bootstrap';
+import { useRecoilState } from 'recoil';
 import Post from '../../lib/interfaces/post';
 import User from '../../lib/interfaces/user';
-import dayjs from 'dayjs';
-import Link from 'next/link';
-import { userState } from '../../lib/store/user.store';
-import { useRecoilState } from 'recoil';
 import deletePostRequest from '../../lib/requests/mutators/deletePostRequest';
-import { confirmAlert } from 'react-confirm-alert'; // Import
-import Image from 'next/image';
+import { userState } from '../../lib/store/user.store';
 type Props = {
   post: Post;
   width?: number;

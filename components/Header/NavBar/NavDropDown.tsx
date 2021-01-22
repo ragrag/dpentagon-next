@@ -1,9 +1,9 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Menu, MenuItem } from '@material-ui/core';
-import { NavDropdown } from 'react-bootstrap';
 import { useRouter } from 'next/router';
+import React from 'react';
+import { NavDropdown } from 'react-bootstrap';
 
 type Props = {
   label: string;

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Post from '../../interfaces/post';
-import User from '../../interfaces/user';
 
 export interface PostsFetchQuery {
   page: number;

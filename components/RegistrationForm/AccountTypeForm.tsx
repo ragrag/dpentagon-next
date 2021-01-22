@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import Profession from '../../lib/interfaces/profession';
 import { RegisterUserDTO } from '../../lib/requests/mutators/userRegister';
 

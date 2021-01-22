@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import StepZilla from 'react-stepzilla';
 import useSWR from 'swr';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';

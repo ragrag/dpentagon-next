@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import LoadingSpinner from '../../../components/Loading/LoadingSpinner';
 import confirmEmail from '../../../lib/requests/mutators/confirmEmail';
 

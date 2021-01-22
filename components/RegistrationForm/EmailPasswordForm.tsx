@@ -1,6 +1,5 @@
 import React from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
-import { CountryDropdown } from 'react-country-region-selector';
+import { Col, Form, Row } from 'react-bootstrap';
 import { RegisterUserDTO } from '../../lib/requests/mutators/userRegister';
 
 type Props = {

@@ -1,6 +1,6 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import React from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import requestEmailConfirmation from '../../lib/requests/mutators/requestEmailConfirmation';
 
 export default function EmailNotConfirmedPage({ email }: InferGetServerSidePropsType<typeof getServerSideProps>) {

@@ -5,7 +5,6 @@ import useSWR from 'swr';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import PostItem from '../../components/Post/PostItem';
 import UserContactInfo from '../../components/UserProfile/UserContactInfo';
-import User from '../../lib/interfaces/user';
 import postByIdFetcher from '../../lib/requests/fetchers/postByIdFetcher';
 
 export default function PostPage({ postId }: InferGetServerSidePropsType<typeof getServerSideProps>) {

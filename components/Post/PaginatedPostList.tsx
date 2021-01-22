@@ -1,13 +1,12 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { transitions } from 'react-stack-grid';
 import Post from '../../lib/interfaces/post';
-import { PostsFetchResponse } from '../../lib/requests/fetchers/postsFetcher';
-import StackGrid, { transitions } from 'react-stack-grid';
-import { Card, Col, Row } from 'react-bootstrap';
-import PostItem from './PostItem';
 import User from '../../lib/interfaces/user';
+import { PostsFetchResponse } from '../../lib/requests/fetchers/postsFetcher';
 import UserContactInfo from '../UserProfile/UserContactInfo';
-import { useRouter } from 'next/router';
+import PostItem from './PostItem';
 const { scaleDown } = transitions;
 export type Props = {
   data: PostsFetchResponse[];
