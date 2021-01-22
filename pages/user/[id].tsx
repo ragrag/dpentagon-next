@@ -87,7 +87,7 @@ export default function UserPage({ userId, initialUser }: InferGetServerSideProp
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getServerSideProps = async context => {
   const userId = context.params.id;
   try {
     const initialUser: User = await userByIdFetcher(userId);

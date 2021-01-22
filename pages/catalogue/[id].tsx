@@ -288,7 +288,7 @@ export default function CataloguePage({ catalogueId, initialCatalogue }: InferGe
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getServerSideProps = async context => {
   const catalogueId = Number(context.params.id);
   try {
     const initialCatalogue = await catalogueByIdFetcher(catalogueId);

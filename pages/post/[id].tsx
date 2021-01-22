@@ -69,12 +69,12 @@ export default function PostPage({ postId, initialPost }: InferGetServerSideProp
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async context => {
+export const getServerSideProps = async context => {
   const postId = Number(context.params.id as string);
   try {
-    const intialPost: Post = await postByIdFetcher(postId);
-    return { props: { postId, intialPost } };
+    const initialPost: Post = await postByIdFetcher(postId);
+    return { props: { postId, initialPost } };
   } catch (err) {
-    return { props: { postId, intialPost: null } };
+    return { props: { postId, initialPost: null } };
   }
 };
