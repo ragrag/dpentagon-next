@@ -1,5 +1,6 @@
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -55,6 +56,23 @@ export default function ProfilePage() {
   const loadingCatalogues = !catalogueData || isValidatingCatalogues;
   return (
     <>
+      <Head>
+        {user ? (
+          <>
+            <title>{user.displayName}</title>
+            <meta property="og:title" content={user.displayName + ' on DPentagon'} />
+            <meta property="og:description" content={'Check out ' + user.displayName + ' on DPentagon'} />
+            <meta property="og:image" content={user.photo} />
+            <meta property="og:url" content={`www.dpentagon.com/user/${user.id}`} />
+            <meta name="twitter:card" content={'Check out ' + user.displayName + ' on DPentagon'} />
+            <meta property="og:site_name" content="DPentagon" />
+          </>
+        ) : (
+          <>
+            <title>DPentagon - User</title>
+          </>
+        )}
+      </Head>
       <Row className="justify-content-center h-100" style={{ minHeight: '100vh', height: '100vh' }}>
         <Col md="8" className="text-center">
           {!loggedInUserState.loggedIn ? (

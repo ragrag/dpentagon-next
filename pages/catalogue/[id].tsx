@@ -1,6 +1,7 @@
 import { faPlusCircle, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -18,7 +19,7 @@ import updateCatalogueRequest from '../../lib/requests/mutators/updateCatalogueR
 import { userState } from '../../lib/store/user.store';
 import readImageFromFile from '../../lib/util/readImage';
 
-export default function CataloguePage({ catalogueId }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+export default function CataloguePage({ catalogueId, initialCatalogue }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const router = useRouter();
   const [user, setUser] = useRecoilState(userState);
   const [newPostModalVisible, setNewPostModalVisible] = React.useState(false);
@@ -76,12 +77,11 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
 
   const { data: catalogue, mutate: mutateCatalogue, error: errorCatalogue, isValidating: isValidatingCatalogue } = useSWR(
     [`/api/v1/catalogues/${catalogueId}/catalogues`, catalogueId],
-    async (url, catalogueId) => {
-      const catalogue = await catalogueByIdFetcher(catalogueId);
-      return catalogue;
-    },
+    async (url, catalogueId) => await catalogueByIdFetcher(catalogueId),
+
     {
-      initialData: null,
+      initialData: initialCatalogue,
+      revalidateOnFocus: false,
     },
   );
 
@@ -119,6 +119,23 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
   };
   return (
     <>
+      <Head>
+        {catalogue ? (
+          <>
+            <title>{catalogue.name + ' by ' + catalogue.user.displayName}</title>
+            <meta property="og:title" content={catalogue.name + ' by ' + catalogue.user.displayName} />
+            <meta property="og:description" content={'Check out ' + catalogue.name + ' by ' + catalogue.user.displayName} />
+            <meta property="og:image" content={catalogue.photo} />
+            <meta property="og:url" content={`www.dpentagon.com/catalogue/${catalogue.id}`} />
+            <meta name="twitter:card" content={catalogue.name + ' by ' + catalogue.user.displayName} />
+            <meta property="og:site_name" content="DPentagon" />
+          </>
+        ) : (
+          <>
+            <title>DPentagon - Catalogue</title>
+          </>
+        )}
+      </Head>
       <Row className="justify-content-center">
         <Col md="8" className="text-center">
           {loadingCatalogue ? (
@@ -273,5 +290,10 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const catalogueId = Number(context.params.id);
-  return { props: { catalogueId } };
+  try {
+    const initialCatalogue = await catalogueByIdFetcher(catalogueId);
+    return { props: { catalogueId, initialCatalogue } };
+  } catch (err) {
+    return { props: { catalogueId, initialCatalogue: null } };
+  }
 };

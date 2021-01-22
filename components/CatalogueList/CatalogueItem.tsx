@@ -1,5 +1,4 @@
 import dayjs from 'dayjs';
-
 import React from 'react';
 import { Card } from 'react-bootstrap';
 import Catalogue from '../../lib/interfaces/catalogue';
