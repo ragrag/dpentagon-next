@@ -1,14 +1,13 @@
-import axios from 'axios';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import React from 'react';
 import { Container } from 'react-bootstrap';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import useSWR from 'swr';
 import User from '../../lib/interfaces/user';
 import userFetcher from '../../lib/requests/fetchers/userFetcher';
-import { userState, defaultUser, userLoggedInState } from '../../lib/store/user.store';
+import { defaultUser, userLoggedInState, userState } from '../../lib/store/user.store';
 import Footer from '../Footer/Footer';
 import TopBar from '../Header/TopBar/TopBar';
-import React from 'react';
 export default function Layout({ userInitialState, children }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [user, setUser] = useRecoilState(userState);
   const userLoggedIn = useRecoilValue(userLoggedInState);
@@ -17,7 +16,7 @@ export default function Layout({ userInitialState, children }: InferGetServerSid
     localStorage.removeItem('authToken');
     setUser(defaultUser);
   };
-  const { data: userData, mutate, error } = useSWR('/api/user', userFetcher, {
+  const { data: userData } = useSWR('/api/user', userFetcher, {
     initialData: userInitialState,
     refreshInterval: 0,
     revalidateOnFocus: false,

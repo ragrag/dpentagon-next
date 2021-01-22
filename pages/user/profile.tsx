@@ -1,24 +1,23 @@
-import { faCircleNotch, faPlusCircle, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { Button, Col, Form, OverlayTrigger, Popover, Row } from 'react-bootstrap';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import useSWR from 'swr';
+import * as yup from 'yup';
 import CatalogueList from '../../components/CatalogueList/CatalogueList';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
 import UserProfile from '../../components/UserProfile/UserProfile';
 import userCataloguesFetcher from '../../lib/requests/fetchers/userCataloguesFetcher';
 import userFetcher from '../../lib/requests/fetchers/userFetcher';
-import { defaultUser, userLoggedInState, userState } from '../../lib/store/user.store';
-import createPhotoPostRequest from '../../lib/requests/mutators/createCatalogueRequest';
-import * as yup from 'yup';
 import createCatalogueRequest from '../../lib/requests/mutators/createPhotoPostRequest';
-const schema = yup.string().email().required();
+import { defaultUser, userState } from '../../lib/store/user.store';
+
 export default function ProfilePage() {
   const [loggedInUserState, setLoggedInUserState] = useRecoilState(userState);
-  const userLoggedIn = useRecoilValue(userLoggedInState);
+
   const newCatalogue = React.useRef(null);
   const logoutUser = () => {
     setLoggedInUserState(defaultUser);

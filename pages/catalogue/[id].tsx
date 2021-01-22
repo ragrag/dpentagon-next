@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { Button, Col, Form, Modal, OverlayTrigger, Popover, Row } from 'react-bootstrap';
+import { Button, Col, Modal, OverlayTrigger, Popover, Row } from 'react-bootstrap';
 import { useRecoilState } from 'recoil';
 import useSWR, { useSWRInfinite } from 'swr';
 import LoadingSpinner from '../../components/Loading/LoadingSpinner';
@@ -90,7 +90,7 @@ export default function CataloguePage({ catalogueId }: InferGetServerSidePropsTy
     return catalogue?.id ? [`/api/v1/catalogues/${catalogueId}/posts`, catalogueId, pageIndex + 1, 20] : null; // SWR key
   };
 
-  const { data: postsData, size, setSize, mutate: mutatePostsData, isValidating: isValidatingPostsData, error } = useSWRInfinite(
+  const { data: postsData, size, setSize, mutate: mutatePostsData, isValidating: isValidatingPostsData } = useSWRInfinite(
     getKey,
     async (url, catalogueId, page, limit) => await cataloguePostsFetcher(url, catalogueId, { page, limit }),
     { revalidateOnFocus: false, refreshInterval: 0 },

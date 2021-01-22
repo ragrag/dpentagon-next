@@ -1,9 +1,8 @@
 import React from 'react';
-import { Form, Row, Col } from 'react-bootstrap';
-import { CountryDropdown } from 'react-country-region-selector';
-import { RegisterUserDTO } from '../../lib/requests/mutators/userRegister';
+import { Col, Form, Row } from 'react-bootstrap';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { RegisterUserDTO } from '../../lib/requests/mutators/userRegister';
 
 type Props = {
   registrationData: RegisterUserDTO;

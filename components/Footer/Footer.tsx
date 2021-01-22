@@ -2,9 +2,8 @@ import { faCaretDown, faCaretUp, faHome } from '@fortawesome/free-solid-svg-icon
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Col, Row } from 'react-bootstrap';
 import React from 'react';
-import ScrollToTop from 'react-scroll-up';
+import { Col, Row } from 'react-bootstrap';
 export default function Footer() {
   const [isVisible, setIsVisible] = React.useState(false);
 

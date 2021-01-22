@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React from 'react';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 export default function AdSection() {
   const [sectionHovered, setSectionHovered] = React.useState(false);

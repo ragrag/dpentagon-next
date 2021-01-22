@@ -1,14 +1,9 @@
-import { Col, Row } from 'react-bootstrap';
 import Link from 'next/link';
-import Image from 'next/image';
-import globalStyles from '../../../styles/globalStyles.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import userLogout from '../../../lib/requests/mutators/userLogout';
 import { useRouter } from 'next/router';
 import React from 'react';
-import axios from 'axios';
-import { setupMaster } from 'cluster';
+import { Col, Row } from 'react-bootstrap';
+import userLogout from '../../../lib/requests/mutators/userLogout';
+import globalStyles from '../../../styles/globalStyles.module.css';
 interface Props {
   loggedIn: boolean;
   logoutUser: () => void;

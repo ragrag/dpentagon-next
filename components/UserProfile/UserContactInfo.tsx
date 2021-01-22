@@ -1,17 +1,16 @@
+import { Formik } from 'formik';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { Button, Col, Form, Modal, Row } from 'react-bootstrap';
-import { mutateCallback } from 'swr/dist/types';
-import User from '../../lib/interfaces/user';
 import { CountryDropdown } from 'react-country-region-selector';
+import { useRecoilState } from 'recoil';
+import { mutateCallback } from 'swr/dist/types';
 import * as Yup from 'yup';
 import 'yup-phone';
-import { Formik } from 'formik';
-import updateUserRequest from '../../lib/requests/mutators/updateUser';
-import PhoneInput from 'react-phone-input-2';
+import User from '../../lib/interfaces/user';
 import deleteUserRequest from '../../lib/requests/mutators/deleteUserRequest';
-import { useRouter } from 'next/router';
+import updateUserRequest from '../../lib/requests/mutators/updateUser';
 import { defaultUser, userState } from '../../lib/store/user.store';
-import { useRecoilState } from 'recoil';
 type Props = {
   visible: boolean;
   setModalVisibility: (visible: boolean) => void;
@@ -111,7 +110,7 @@ export default function UserContactInfo({ visible, setModalVisibility, user, rea
               // same shape as initial values
               try {
                 clearErrors();
-                const response = await updateUserRequest({
+                await updateUserRequest({
                   //   address: values.address,
                   //   country: values.country,
                   //   displayName: values.displayName,
@@ -136,7 +135,7 @@ export default function UserContactInfo({ visible, setModalVisibility, user, rea
             validateOnChange={false}
             validateOnBlur={false}
           >
-            {({ errors, handleSubmit, handleChange, handleBlur, values, isSubmitting }) => (
+            {({ errors, handleSubmit, handleChange, values, isSubmitting }) => (
               <Form
                 noValidate
                 onSubmit={e => {
