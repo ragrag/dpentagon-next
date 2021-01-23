@@ -35,6 +35,7 @@ export default function Home() {
     <>
       <Head>
         <title>DPentagon- HOME</title>
+        <meta name="google-site-verification" content="xGEkR0e2RGxbtsCLEX6n_3KKGi0vENY9EYCvQAta_P4" />
       </Head>
       <div>
         <NavBar></NavBar>
