@@ -17,11 +17,11 @@ export default function CatalogueItem({ catalogue, onClick }: Props) {
         onClick(catalogue.id);
       }}
     >
-      <Card.Header as="h5" className="text-left">
+      <Card.Header as="h5" className="text-left hoverable-anchor">
         {catalogue.name}
       </Card.Header>
       <Card.Img as={Image} src={catalogue.photo ? catalogue.photo : '/cover.jpeg'} width="820" height="312" alt="Card image" />
-      <Card.Footer as="h6" className="text-center">
+      <Card.Footer as="h6" className="text-center hoverable-anchor">
         {dayjs(catalogue.createdAt).fromNow()}
       </Card.Footer>
       {/* <Card.ImgOverlay className="text-center d-flex justify-content-center align-items-center">
