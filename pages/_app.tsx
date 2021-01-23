@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 import Layout from '../components/Layout/Layout';
 import '../styles/globals.css';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 function MyApp({ Component, pageProps }) {
