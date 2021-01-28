@@ -1,3 +1,5 @@
+import { faCopy, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import React from 'react';
 import { Button, Col, Image as BootstrapImage, OverlayTrigger, Popover, Row } from 'react-bootstrap';
@@ -230,9 +232,29 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
 
                   <Col md="5" style={{ marginTop: '20px' }}>
                     <h2>{user.displayName}</h2>
-                    <span onClick={() => setModalVisibility(true)} style={{ marginLeft: '35px', marginRight: '30px' }} className="hoverable-anchor">
-                      Contact Info
-                    </span>
+                    <Row>
+                      <Col>
+                        <span
+                          onClick={() => setModalVisibility(true)}
+                          style={{ marginLeft: '35px', marginRight: '10px' }}
+                          className="hoverable-anchor"
+                        >
+                          Contact Info
+                        </span>
+                        {editable ? (
+                          <FontAwesomeIcon
+                            className="hoverable"
+                            size="sm"
+                            color="#000000"
+                            icon={faShareAlt}
+                            onClick={async () => {
+                              await navigator.clipboard.writeText(`https://www.dpentagon.com/user/${user.id}`);
+                              alert('Profile link copied');
+                            }}
+                          />
+                        ) : null}
+                      </Col>
+                    </Row>
                   </Col>
                 </Row>
               </Col>

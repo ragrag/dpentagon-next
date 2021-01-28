@@ -62,6 +62,7 @@ export default function Home() {
                 />
               </Col>
             </Row>
+            <br></br>
             {!data ? null : data[0]?.posts?.length === 0 ? (
               <>
                 <br></br>
