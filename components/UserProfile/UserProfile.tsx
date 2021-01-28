@@ -107,7 +107,7 @@ export default function UserProfile({ user, mutateUser, editable }: Props) {
             <Row className="justify-content-center">
               <Col>
                 <div>
-                  <Image src={user.coverPhoto ? user.coverPhoto + `?key=${uuid()}` : '/cover.jpeg'} width="820" height="312" />
+                  <img src={user.coverPhoto ? user.coverPhoto + `?key=${uuid()}` : '/cover.jpeg'} width="820" height="312" />
                 </div>
                 {editable ? (
                   <div>
