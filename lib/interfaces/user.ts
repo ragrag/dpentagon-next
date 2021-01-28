@@ -14,6 +14,7 @@ export default interface User {
   phoneNumber: string;
   address: string;
   website: string;
+  private: boolean;
   createdAt: Date;
   updatedAt: Date;
 }

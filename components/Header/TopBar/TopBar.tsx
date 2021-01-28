@@ -51,7 +51,7 @@ export default function TopBar({ loggedIn, logoutUser }: Props) {
                 />
               </div>
             </Link>
-            <Link href="/contact">
+            <Link href="/">
               <span
                 className="hoverable text-center"
                 style={{ fontWeight: 900, fontFamily: 'Athelas', whiteSpace: 'nowrap', fontSize: 12, marginTop: 0 }}

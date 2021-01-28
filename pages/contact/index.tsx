@@ -18,6 +18,7 @@ export default function ContactFormPage() {
       </Head>
       <Row className="justify-content-center h-100" style={{ minHeight: '100vh', height: '100vh' }}>
         <Col md="6" className="text-center">
+          <h4 style={{ fontWeight: 900 }}>Contact Us</h4>
           <Form className="kwes-form" action="https://kwes.io/api/foreign/forms/SV53VAl9pjULOrCnViZu">
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>

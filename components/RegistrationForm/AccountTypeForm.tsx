@@ -22,10 +22,10 @@ export default function AccountTypeForm({ registrationData, setRegistrationData,
         }}
       >
         <Form.Group as={Row} className="justify-content-center" controlId="formPlaintextUserType">
-          <Form.Label className="text-left" column sm="2" xs="4">
+          <Form.Label className="text-left" column sm="2" xs="4" md="2">
             Account type
           </Form.Label>
-          <Col className="text-center" sm="2">
+          <Col className="text-center" sm="2" xs="4" md="2">
             <Form.Check
               type="radio"
               name="userType"
@@ -39,7 +39,7 @@ export default function AccountTypeForm({ registrationData, setRegistrationData,
 
             {/* {errors.displayName ? <div style={{ color: '#FF0000' }}> {errors.displayName}</div> : null} */}
           </Col>
-          <Col className="text-center" sm="2" xs="4">
+          <Col className="text-center" sm="2" xs="4" md="2">
             <Form.Check
               type="radio"
               name="userType"

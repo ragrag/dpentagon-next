@@ -26,6 +26,7 @@ const ContactInfoSchema = Yup.object().shape({
   phoneNumber: Yup.string().phone('Phone number must be valid'),
   website: Yup.string().nullable(),
   address: Yup.string().nullable(),
+  private: Yup.boolean().required('Phone number/Address privacy required'),
 });
 
 export default function UserContactInfo({ visible, setModalVisibility, user, readOnly, mutateUser }: Props) {
@@ -104,6 +105,7 @@ export default function UserContactInfo({ visible, setModalVisibility, user, rea
               phoneNumber: user?.phoneNumber ?? '',
               website: user?.website ?? '',
               address: user?.address ?? '',
+              private: user?.private ?? false,
             }}
             validationSchema={ContactInfoSchema}
             onSubmit={async values => {
@@ -288,6 +290,27 @@ export default function UserContactInfo({ visible, setModalVisibility, user, rea
                     {errors.address ? <div style={{ color: '#FF0000' }}> {errors.address}</div> : null}
                   </Col>
                 </Form.Group>
+                {readOnly ? null : (
+                  <Form.Group as={Row} controlId="formPlaintextPrivacy">
+                    <Form.Label column sm="3">
+                      <span className="bold-text">Hide Phone Number/Address: </span>
+                    </Form.Label>
+                    <Col sm="6">
+                      <Form.Control
+                        style={{
+                          backgroundColor: readOnly ? '' : '#FFF',
+                        }}
+                        type="checkbox"
+                        name="private"
+                        plaintext
+                        readOnly={readOnly}
+                        checked={values.private}
+                        onChange={handleChange}
+                      />
+                      {errors.private ? <div style={{ color: '#FF0000' }}> {errors.private}</div> : null}
+                    </Col>
+                  </Form.Group>
+                )}
                 {readOnly ? null : (
                   <Row className="justify-content-center">
                     <Col className="text-center" md="3">

@@ -45,7 +45,7 @@ export default function Home() {
             <AdSection />
           </Col>
         </Row>
-
+        <br></br>
         <Row className="justify-content-center">
           <Col md="8" className="my-auto text-center">
             <Row className="justify-content-md-left" style={{ fontSize: 12 }}>

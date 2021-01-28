@@ -1,6 +1,5 @@
-import { faCaretDown, faCaretUp, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faCaretUp, faEnvelope, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { Col, Row } from 'react-bootstrap';
@@ -37,16 +36,17 @@ export default function Footer() {
       <footer style={{ alignContent: 'center' }} className="text-center">
         <Row className="justify-content-center" style={{ backgroundColor: '#000', width: '100%', marginBottom: '0px' }}>
           <Col className="my-auto text-center " xs="4" md="4">
-            <Link href="/">
+            <Link href="/contact">
               <div>
-                <FontAwesomeIcon className="hoverable" size="2x" color="#e9dccc" icon={faHome} />
+                <FontAwesomeIcon className="hoverable" size="2x" color="#e9dccc" icon={faEnvelope} />
               </div>
             </Link>
           </Col>
           <Col className="my-auto text-center" xs="auto" md="auto">
             <Link href="/user/profile">
               <div>
-                <Image className="hoverable" src="/logo-custom.png" alt="DPentagon Logo" width={60} height={60} />
+                <FontAwesomeIcon className="hoverable" size="2x" color="#e9dccc" icon={faUser} />
+                {/* <Image className="hoverable" src="/logo-custom.png" alt="DPentagon Logo" width={60} height={60} /> */}
               </div>
             </Link>
             {/* <span style={{ fontSize: 10, color: '#FFF' }} className="hoverable-anchor">

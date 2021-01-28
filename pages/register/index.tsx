@@ -56,7 +56,10 @@ export default function RegisterPage() {
         <meta name="twitter:card" content="Join DPentagon And Start Creating Your Catalogue" />
         <meta property="og:site_name" content="DPentagon" />
       </Head>
-      <Row className={`justify-content-md-center h-100`} style={{ minHeight: '100vh', height: '100vh', backgroundColor: '#e9dccc' }}>
+      <Row
+        className={`justify-content-md-center h-100`}
+        style={{ minHeight: '100vh', height: '100vh', backgroundColor: '#e9dccc', overflowX: 'scroll' }}
+      >
         <Col className="text-center" md="12" xs="12">
           <br></br>
           <h3 className="bold-text">Welcome to D.Pentagon</h3>
@@ -76,8 +79,12 @@ export default function RegisterPage() {
             </div>
           )}
           <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
         </Col>
       </Row>
+
       <style jsx>{`
         .wizard-btn {
           margin-right: 10px !imporant;

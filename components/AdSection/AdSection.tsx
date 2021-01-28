@@ -19,7 +19,7 @@ export default function AdSection() {
       {/* <div style={{ backgroundColor: '#000', width: '1024', height: '480' }}></div> */}
       <Card.ImgOverlay className="d-flex justify-content-center align-items-center">
         <Card.Text>
-          {sectionHovered ? (
+          {/* {sectionHovered ? (
             <h2 className="align-self-center mx-auto hoverable" style={{ fontFamily: 'Athelas' }}>
               Read More
             </h2>
@@ -27,7 +27,7 @@ export default function AdSection() {
             <h1 className="align-self-center mx-auto" style={{ fontFamily: 'Athelas' }}>
               Info & Ads
             </h1>
-          )}
+          )} */}
         </Card.Text>
       </Card.ImgOverlay>
     </Card>
