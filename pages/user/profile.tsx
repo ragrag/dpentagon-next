@@ -44,7 +44,7 @@ export default function ProfilePage() {
     async (url, userId) => await userCataloguesFetcher(userId),
     {
       initialData: null,
-
+      revalidateOnFocus: false,
       onError: err => {
         if (err?.response?.status === 401) logoutUser();
         else if (err?.response?.status === 403) router.replace(`/email/notconfirmed?email=${err?.response?.data?.email}`);
