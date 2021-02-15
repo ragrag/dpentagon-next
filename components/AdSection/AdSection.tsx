@@ -36,7 +36,7 @@ export default function AdSection() {
         </Card.ImgOverlay>
       </Card>
       <Modal show={modalVisible} onHide={() => setModalVisibility(false)} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
-        <img src="/ad_info.png"></img>
+        <img src="/ad_info.png" className="img-fluid"></img>
       </Modal>
     </>
   );
