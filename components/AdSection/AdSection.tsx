@@ -19,7 +19,7 @@ export default function AdSection() {
         }}
         onClick={() => setModalVisibility(true)}
       >
-        <Card.Img as={Image} width="1440" height="640" src={sectionHovered ? '/ad_cover_hover.jpg' : '/ad_cover.jpg'} alt="Card image" />
+        <Card.Img as={Image} width="1440" height="640" src={'/ad_cover_hover.jpg'} alt="Card image" />
         {/* <div style={{ backgroundColor: '#000', width: '1024', height: '480' }}></div> */}
         <Card.ImgOverlay className="d-flex justify-content-center align-items-center">
           <Card.Text>
